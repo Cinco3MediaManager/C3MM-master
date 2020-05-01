@@ -24,7 +24,7 @@ public class DBAProtocol
 		
 		String queryType = "";
 		String sql = "";
-		String value = "";;
+		String value = "";
 		
 		if (state == WAITING)
 		{
@@ -34,20 +34,21 @@ public class DBAProtocol
 		else if (state == TRY_QUERY)
 		{
 			C3DBA query = new C3DBA();
+			
 			String recId = "";
 			
 			if (theInputs != null)
 			{
-				args = theInputs.split(";");
-				queryType = args[0];
-				sql = args[1];
+				args = theInputs.split(";");	//args is a string array holding the input recieved
+				queryType = args[0];			//queryType is the type of request being made
+				sql = args[1];					//sql is the query. Ex: s;treasure Island --> s;
 				
 				switch (queryType)
 				{
 					case Comms.SEL:
 						if (args.length > 2)
 						{
-							value = args[2];
+							value = args[2];	//Value is the 3rd item in args. type;query;value
 						}
 						query.select(sql, value);
 						results = query.getRows();
@@ -89,6 +90,7 @@ public class DBAProtocol
 						try
 						{
 							int n = query.insert(sql, values);
+							
 							theOutput = "Rows Inserted: " + n;
 						}
 						catch (SQLException e)

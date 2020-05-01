@@ -1,7 +1,8 @@
 package com.c3mm.client.model;
 
 public class Props
-{
+{	
+	//Constants for Media
 	public static final String ID = "id";
 	public static final String TITLE = "title";
 	public static final String AUTHOR = "author";
@@ -15,6 +16,15 @@ public class Props
 	public static final String ARTIST = "artist";
 	public static final String DIRECTOR = "director";
 	
+	//Constants for Users
+	public static final String USERNAME = "username";
+	public static final String PASSWORD ="password";
+	public static final String FIRSTNAME ="firstname";
+	public static final String LASTNAME ="lastname";
+	public static final String ADDRESS ="address";
+	public static final String EMAIL =	"email";
+	public static final String IMAGEURL = "image_url";
+
 	public static class Comms
 	{
 		/**
@@ -32,27 +42,44 @@ public class Props
 		public static final String UPD = "u";
 		public static final String INS = "i";
 
-		
+		//Testing
+		public static final String VER = "v";
 		
 	}
 	
 	public static class Table
 	{
+		//Media table names
 		public static final String BOOKS = "books";
 		public static final String CDS = "cds";
 		public static final String MOVIES = "movies";
+		
+		//user table name
+		public static final String USERS = "user";
 	}
 	
 	public static class Msg
 	{
+		//Message System Constants
 		public static final String SEL_ALL = "s;select * from ";
 		public static final String Q_MARK = " = ?;";
 		
-		private static final String CHK_QUERY = " not found. Please check your query.";
+		//Media Query Constants
+		private static final String CHK_QUERY = " not found. Please check your query.";	//Private?
 		public static final String BOOK_NF = "Book" + CHK_QUERY;
 		public static final String CD_NF = "CD" + CHK_QUERY;
 		public static final String MOVIE_NF = "Movie" + CHK_QUERY;
 		
+		//User Query Constants
+		public static final String USER_NF = "User" + CHK_QUERY;
+		
+	}
+	
+	//Testing
+	public static class Log
+	{
+		public static final String LOG_FILE_CLIENT = "activity_logs/client_log.txt";
+		public static final String LOG_FILE_SERVER = "activity_logs/server_log.txt";
 	}
 }
 

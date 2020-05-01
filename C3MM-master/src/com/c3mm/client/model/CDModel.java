@@ -21,6 +21,9 @@ public class CDModel extends AbstractMediaModel
 	private String artist;
 	private String year; // released year
 	
+	
+	//Testing
+	private String imageURL;
 	/**
 	 * Initialize the model variables
 	 */
@@ -29,14 +32,20 @@ public class CDModel extends AbstractMediaModel
 		super();
 		this.artist = "";
 		this.year = "";
+		
+		//Testing
+		this.imageURL = "images/default_image";
 	}
 	
 	public CDModel(int rec_id, int inStock, String title, String country, String type, String language, String artist,
-			String year)
+			String year, String imageURL)
 	{
 		super(rec_id, inStock, title, country, type, language);
 		this.artist = artist;
 		this.year = year;
+		
+		//Testing 
+		this.imageURL = imageURL;
 	}
 	
 	public String getArtist()
@@ -59,6 +68,17 @@ public class CDModel extends AbstractMediaModel
 		this.year = year;
 	}
 	
+	//Testing
+	public void setImageURL(String imageURL)
+	{
+		this.imageURL = imageURL;
+	}
+	
+	public String getImageURL()
+	{
+		return imageURL;
+	}
+	
 	public HashMap<String, String> getProperties()
 	{
 		HashMap<String, String>	props = new HashMap<String, String>();
@@ -70,6 +90,9 @@ public class CDModel extends AbstractMediaModel
 		props.put(Props.LANG, this.getLanguage());
 		props.put(Props.ARTIST, this.getArtist());
 		props.put(Props.YEAR, this.getYear());
+		
+		//Testing 
+		props.put(Props.IMAGEURL, this.imageURL);
 		
 		return props;
 	}

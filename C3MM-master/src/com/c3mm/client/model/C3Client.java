@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
 
+import com.c3mm.client.controller.SystemFunctions;
 import com.c3mm.client.model.Props.Comms;
 import com.c3mm.client.model.Props.Msg;
 import com.c3mm.client.model.Props.Table;
@@ -23,9 +24,13 @@ public class C3Client
 	
 	Vector<String> results = null;
 	
-	private void sendRequest(String message)//tyest change
+	private void sendRequest(String message)
 	{
-		try (Socket socket = new Socket("192.168.1.7", PORT); // connect to the server socket. 
+		//For My Machine
+		String local = "192.168.1.7";
+		//
+		
+		try (Socket socket = new Socket(InetAddress.getLocalHost(), PORT); // connect to the server socket. 
 				PrintWriter out = new PrintWriter(socket.getOutputStream(), true); // use this to send requests to server
 				BufferedReader in = new BufferedReader( new InputStreamReader(socket.getInputStream()) ); ) // use this to read response from server 
 		{
@@ -67,11 +72,17 @@ public class C3Client
 		}
 		catch (UnknownHostException e)
 		{
+			//Document the error and action taken in the activity log
+			SystemFunctions.writeToClientLog(UNKNOWN_HOST + HOST + "\n" + "Exiting Program");
+			
 			System.err.println(UNKNOWN_HOST + HOST);
 			System.exit(1);
 		}
 		catch (IOException e)
 		{
+			//Document the error and action taken in the activity log
+			SystemFunctions.writeToClientLog(IO_HOST + HOST + "\n" + "Exiting Program");
+
 			System.err.println(IO_HOST + HOST);
 			System.exit(1);
 		}
@@ -93,7 +104,8 @@ public class C3Client
 					values[5], // ISBN
 					values[6], // country
 					values[7], // type
-					values[8]  // language
+					values[8],  // language
+					values[9]	//image url
 			);
 		}
 		catch (Exception e)
@@ -103,6 +115,7 @@ public class C3Client
 		return book;
 	}
 	
+	/*ORIGINAL
 	public List<BookModel> getAllBooks()
 	{
 		select(Table.BOOKS);
@@ -121,6 +134,34 @@ public class C3Client
 					values[6], // country
 					values[7], // type
 					values[8]  // language
+				)
+			);
+		}
+		
+		return books;
+	}
+	*/
+	
+	//Testing done with copy
+	public List<BookModel> getAllBooks()
+	{
+		select(Table.BOOKS);
+		List<BookModel> books = new LinkedList<>();
+		
+		for (String row : results)
+		{
+			String[] values = row.split(Comms.DELIM);
+			books.add(
+				new BookModel(Integer.parseInt(values[0]), // id
+					values[1], // title
+					values[2], // author
+					Integer.parseInt(values[3]), // in-stock
+					values[4], // publication date
+					values[5], // ISBN
+					values[6], // country
+					values[7], // type
+					values[8],  // language
+					values[9]	//image url
 				)
 			);
 		}
@@ -149,7 +190,8 @@ public class C3Client
 					values[4], // type
 					values[5], // language
 					values[6], // country
-					values[7]  // type
+					values[7],  // type
+					values[8]	//image url
 			);
 		}
 		catch (Exception e)
@@ -175,9 +217,10 @@ public class C3Client
 					values[3], // country 
 					values[4], // type
 					values[5], // language
-					values[6], // country
-					values[7]  // type
-				)
+					values[6], // artist
+					values[7],  // year
+					values[8]	//image url
+					)
 			);
 		}
 		
@@ -205,7 +248,8 @@ public class C3Client
 					values[4], // type
 					values[5], // language
 					values[6], // director
-					values[7]  // year
+					values[7], // year
+					values[8]	//image url
 					);
 			
 		}
@@ -232,7 +276,8 @@ public class C3Client
 							values[4], // type
 							values[5], // language
 							values[6], // director
-							values[7]  // year
+							values[7],  // year
+							values[8]	//image url
 							)
 					);
 		}
@@ -304,33 +349,51 @@ public class C3Client
 		sendRequest(msg);
 	}
 	
-	/*
-	public UserModel getUser(String field, String param)
+	//Testing...so far works fine
+	public User getUser(String field, String param)
 	{
-		select(Table.BOOKS, field, param);
+		select(Table.USERS, field, param);
 		String[] values; 
-		BookModel book = null;
+		User user = null;
 		try
 		{
 			values = results.get(0).split(Comms.DELIM);
-			book = new BookModel(Integer.parseInt(values[0]), // id
-					values[1], // title
-					values[2], // author
-					Integer.parseInt(values[3]), // in-stock
-					values[4], // publication date
-					values[5], // ISBN
-					values[6], // country
-					values[7], // type
-					values[8]  // language
-			);
+			//user = new User();
+			//user.setInformation(values[0], values[1], values[2], values[3], values[4], values[5], values[6]);// id	
+
+			//Testing
+			user = new User(values[0], values[1], values[2], values[3], values[4], values[5], values[6]);
+
 		}
 		catch (Exception e)
 		{
-			System.err.println("getBook-> " + Msg.BOOK_NF );
+			System.err.println("getUser-> " + Msg.USER_NF );
 		}
-		return book;
+		return user;
 	}
-	*/
+	
+	//Testing. Currently works fine
+	public boolean isNameAvailable(String name)
+	{
+		boolean available = false;
+		
+		select(Table.USERS, "username", name);
+		String[] values; 
+		try
+		{
+			values = results.get(0).split(Comms.DELIM);
+		}
+		catch (Exception e)
+		{
+			System.err.println("HERE>>>HERE " + Msg.USER_NF );
+			
+			//If a user was not found, then the username is available
+			available = true;
+		}
+		
+		return available;
+	}
+	
 }
 
 

@@ -1,0 +1,6 @@
+Item #1
+10;The Odyssey;Homer;2;01-01-0720;Greece;print;English
+Item #2
+1;Pride and Prejudice;Jane Austen;5;01-28-1813;United Kingdom;print;English
+Item #3
+10;2;The Wizard of Oz;usa;dvd;English;Victor Fleming;1939

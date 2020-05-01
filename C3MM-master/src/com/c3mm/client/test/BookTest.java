@@ -45,7 +45,7 @@ public class BookTest
 		//TODO do we need the 3rd contructor???
 		
 		// Test second contructor
-		BookModel book2 = new BookModel(1, "mybook2", "MyAuthor2", 5, "01-01-1999", "9879879874", "usa", "stream", "english");
+		BookModel book2 = new BookModel(1, "mybook2", "MyAuthor2", 5, "01-01-1999", "9879879874", "usa", "stream", "english", "default_cover.jpg");
 		
 		// display values
 		System.out.println("------------------------------------------");

@@ -23,6 +23,9 @@ public class MovieModel extends AbstractMediaModel
 	private String director;
 	private String year; // released year
 	
+	//Testing
+	private String imageURL;
+	
 	/**
 	 * Initialize the model variables
 	 */
@@ -31,14 +34,21 @@ public class MovieModel extends AbstractMediaModel
 		super();
 		this.director = "";
 		this.year = "";
+		
+		//Testing 
+		this.imageURL = "images/default_image";
+
 	}
 	
 	public MovieModel(int rec_id, int inStock, String title, String country, String type, String language, String director,
-			String year)
+			String year, String imageURL)
 	{
 		super(rec_id, inStock, title, country, type, language);
 		this.director = director;
 		this.year = year;
+		
+		//Testing
+		this.imageURL = imageURL;
 	}
 	
 	public String getYear()
@@ -61,6 +71,17 @@ public class MovieModel extends AbstractMediaModel
 		this.director = director;
 	}
 	
+	//Testing
+	public void setImageURL(String imageURL)
+	{
+		this.imageURL = imageURL;
+	}
+	
+	public String getImageURL()
+	{
+		return imageURL;
+	}
+	
 	public HashMap<String, String> getProperties()
 	{
 		HashMap<String, String>	props = new HashMap<String, String>();
@@ -72,6 +93,9 @@ public class MovieModel extends AbstractMediaModel
 		props.put(Props.LANG, this.getLanguage());
 		props.put(Props.DIRECTOR, this.getDirector());
 		props.put(Props.YEAR, this.getYear());
+		
+		//Testing
+		props.put(Props.IMAGEURL, this.getImageURL());
 		
 		return props;
 	}

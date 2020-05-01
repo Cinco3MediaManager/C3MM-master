@@ -44,7 +44,7 @@ public class MovieTest
 		//TODO do we need the 3rd contructor???
 		
 		// Test second contructor
-		MovieModel movie2 = new MovieModel(1, 5, "mymovie2", "usa", "stream", "english", "MyDirector2", "1999");
+		MovieModel movie2 = new MovieModel(1, 5, "mymovie2", "usa", "stream", "english", "MyDirector2", "1999", "default_image.jpg");
 		
 		// display values
 		System.out.println("------------------------------------------");

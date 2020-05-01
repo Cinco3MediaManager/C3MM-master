@@ -45,7 +45,7 @@ public class CDTest
 		//TODO do we need the 3rd contructor???
 		
 		// Test second contructor
-		CDModel cd2 = new CDModel(1, 5, "mycd2", "usa", "collection", "english", "MyArtist2", "1999");
+		CDModel cd2 = new CDModel(1, 5, "mycd2", "usa", "collection", "english", "MyArtist2", "1999", "default_image.jpg");
 		
 		// display values
 		System.out.println("------------------------------------------");

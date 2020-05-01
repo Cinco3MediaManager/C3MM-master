@@ -25,6 +25,9 @@ public class BookModel extends AbstractMediaModel
 	private String author = null;
 	private String pubDate; // publication date
 	
+	
+	//Testing
+	private String imageURL;
 	/**
 	 * Initialize the model specific variables
 	 */
@@ -34,15 +37,21 @@ public class BookModel extends AbstractMediaModel
 		this.isbn = "";
 		this.author = "";
 		this.pubDate = "";
+		
+		//Testing
+		imageURL = "default_cover.jpg";		//Default cover if none specified
 	}
 	
 	public BookModel(int rec_id, String title, String author, int inStock, String pubDate, String isbn, String country,
-			String type, String language)
+			String type, String language, String imageURL)
 	{
 		super(rec_id, inStock, title, country, type, language);
 		this.isbn = isbn;
 		this.author = author;
 		this.pubDate = pubDate;
+		
+		//Testing
+		this.imageURL = imageURL;
 	}
 	
 	public BookModel(String[] values)
@@ -51,6 +60,9 @@ public class BookModel extends AbstractMediaModel
 		this.isbn = values[5];
 		this.author = values[2];
 		this.pubDate = values[4];
+		
+		//Testing 
+		this.imageURL = values[10];
 	}
 	
 	public String getIsbn()
@@ -83,6 +95,16 @@ public class BookModel extends AbstractMediaModel
 		this.pubDate = pubDate;
 	}
 	
+	public void setImageURL(String imageURL)
+	{
+		this.imageURL = imageURL;
+	}
+	
+	public String getImageURL()
+	{
+		return imageURL;
+	}
+	
 	public HashMap<String, String> getProperties()
 	{
 		HashMap<String, String> props = new HashMap<String, String>();
@@ -95,6 +117,9 @@ public class BookModel extends AbstractMediaModel
 		props.put(Props.COUNTRY, this.getCountry());
 		props.put(Props.TYPE, this.getType());
 		props.put(Props.LANG, this.getLanguage());
+		
+		//Testing
+		props.put(Props.IMAGEURL, this.getImageURL());
 		return props;
 	}
 }

@@ -1,0 +1,8 @@
+Item #1
+9;2;The Godfather;usa;dvd;English;Francis Ford Coppola;1972
+Item #1
+2;3;Dark Side of the Moon;usa;collection;english;Pink Floyd;1967
+Item #2
+3;5;Thriller;usa;single;english;Michael Jackson;1983
+Item #3
+2;To Kill a Mockingbird;Harper Lee;4;07-11-1960;United States;audio-stream;English
