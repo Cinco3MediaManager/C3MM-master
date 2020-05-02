@@ -28,7 +28,6 @@ public class C3Client
 	{
 		//For My Machine
 		String local = "192.168.1.7";
-		//
 		
 		try (Socket socket = new Socket(InetAddress.getLocalHost(), PORT); // connect to the server socket. 
 				PrintWriter out = new PrintWriter(socket.getOutputStream(), true); // use this to send requests to server
@@ -142,7 +141,8 @@ public class C3Client
 	}
 	*/
 	
-	//Testing done with copy
+	//Testing done with copy...works fine
+	//Note: addition of imageURL field (here and in c3db.db
 	public List<BookModel> getAllBooks()
 	{
 		select(Table.BOOKS);
@@ -357,13 +357,8 @@ public class C3Client
 		User user = null;
 		try
 		{
-			values = results.get(0).split(Comms.DELIM);
-			//user = new User();
-			//user.setInformation(values[0], values[1], values[2], values[3], values[4], values[5], values[6]);// id	
-
-			//Testing
+			values = results.get(0).split(Comms.DELIM);	
 			user = new User(values[0], values[1], values[2], values[3], values[4], values[5], values[6]);
-
 		}
 		catch (Exception e)
 		{
@@ -388,6 +383,8 @@ public class C3Client
 			System.err.println("HERE>>>HERE " + Msg.USER_NF );
 			
 			//If a user was not found, then the username is available
+			//To Do: Alter approash to not rely on an error being thrown to 
+			//know a user with that name does not exist
 			available = true;
 		}
 		

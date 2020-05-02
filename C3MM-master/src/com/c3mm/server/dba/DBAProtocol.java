@@ -39,9 +39,13 @@ public class DBAProtocol
 			
 			if (theInputs != null)
 			{
-				args = theInputs.split(";");	//args is a string array holding the input recieved
+				args = theInputs.split(";");	//args is a string array holding the input received
 				queryType = args[0];			//queryType is the type of request being made
 				sql = args[1];					//sql is the query. Ex: s;treasure Island --> s;
+				
+				//Testing
+				//System.out.println("Example of sql: " + sql);
+				//End Testing
 				
 				switch (queryType)
 				{

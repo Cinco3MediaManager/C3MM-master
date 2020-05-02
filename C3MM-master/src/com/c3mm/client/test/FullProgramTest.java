@@ -21,6 +21,37 @@ public class FullProgramTest
 		//Step #2
 		C3Client testClient = new C3Client();
 		
+		//Testing update using server side "Singleton" class "updateStockSingleton"
+		for(int i = 0; i < 100; i++)
+		{
+			int m = i%7;
+			
+			Thread t = new Thread()
+			{
+				public void run()
+				{
+					C3Client client = new C3Client();
+					client.updateBook("in_stock", Integer.toString(m), "5");
+				}
+			};
+			
+			t.start();
+			
+			/*Important Note: The client-side console for "FullProgramTest" may show outputs that appear to be out of order and/or
+			 *disagree with the values in the book table of c3db. This is caused by the client-side switching between threads
+			 *and print tasks.
+			 *
+			 *HOWEVER, the Server console "C3MultiServer" will be in order AND, will agree exactly with the values in c3db! 
+			 *This is why a Singleton type class is used to control updates to the stock of items.
+			 *
+			 *Also Note: In the C3MultiServer console, although 100 separate clients are connected, ONLY ONE stockUpdateSingleton is created!
+			 *To see this, note the println(...) statement in the stockUpdateSingleton constructor. C3MultiServer console shows that this
+			 *line was printed only once. Therefore, only 1 stockUpdateSingleton exists.
+			 */
+			System.out.println("Number in Stock: " + testClient.getBook("book_id", "5").getInStock());
+		}
+		//End testing
+		
 		//Log the client creation
 		SystemFunctions.writeToClientLog("Client Launched.");
 		
@@ -33,5 +64,4 @@ public class FullProgramTest
             }
         });
 	}
-
 }

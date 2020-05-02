@@ -124,6 +124,7 @@ public class CreateAccountWindow extends JFrame implements ActionListener
 			{	
 				//If the username is not available, inform the user to try again
 				JOptionPane.showMessageDialog(this, "Username is already taken. Pick another.");
+				user = null;
 			}
 		}
 		if(e.getSource().equals(reset))

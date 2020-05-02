@@ -38,7 +38,9 @@ public class C3DBA
 			rs = stmt.executeQuery();
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int numberOfColumns = rsmd.getColumnCount();
-			System.out.println("Number of Columns: " + numberOfColumns);
+			
+			//Testing commented out next line
+			//System.out.println("Number of Columns: " + numberOfColumns);
 			
 			if (rs.next() == false)
 			{
@@ -78,6 +80,15 @@ public class C3DBA
 	
 	public int update(String sql, String value, String recId) throws SQLException, SQLiteException
 	{
+		//Testing
+		if(sql.contains("in_stock"))
+		{
+			StockUpdateSingleton stockUpdater = StockUpdateSingleton.getStockUpdater();
+			stockUpdater.updateStock(sql, value, recId);
+			return 1;
+		}
+		//End Testing
+		
 		int n = 0;
 		if (value.isEmpty())
 			return n;
@@ -166,7 +177,7 @@ public class C3DBA
 		return rows;
 	}
 	
-	//Testing
+	//Testing...Unused?
 	public void getUser(String sql, String value)
 	{
 		try
@@ -216,6 +227,50 @@ public class C3DBA
 			e.printStackTrace();
 		}
 	
+	
+	}
+	
+	//Not to be called except by StockUpdateSingleton
+	public void stockUpdate(String sql, String value, String recId) throws SQLException
+	{
+		int n = 0;
+		
+		System.out.println("in stockUpdate method sql = " + sql + " value = " + value + " recId = " + recId);
+		
+		try
+		{
+			con = DriverManager.getConnection(C3DB);
+			con.setAutoCommit(false);
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, value);
+			stmt.setString(2, recId);
+			n = stmt.executeUpdate();
+			con.commit();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+			if (con != null)
+			{
+				try
+				{
+					System.err.print("Transaction is being rolled back");
+					con.rollback();
+				}
+				catch (SQLException excep)
+				{
+					excep.printStackTrace();
+				}
+			}
+		}
+		finally
+		{
+			if (stmt != null)
+			{
+				stmt.close();
+			}
+			con.setAutoCommit(true);
+		}
 	
 	}
 }

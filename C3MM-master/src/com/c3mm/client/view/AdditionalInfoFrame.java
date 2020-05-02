@@ -20,12 +20,43 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 	private JButton close;
 	private JButton add;
 	
-	private JLabel[] labelArray;
+	private JLabel[] fieldNames;
+	private JLabel[] fieldContents;
 	
 	private AbstractMediaModel item;
 	
 	private CheckoutList list;
 	private static User user;
+	
+	
+	public AdditionalInfoFrame()
+	{
+		//To Do: Enclose in a generateLabels() method with a loop
+		fieldNames = new JLabel[MAX_FIELDS];
+		
+		JPanel holder = new JPanel();
+		holder.setLayout(new BoxLayout(holder, BoxLayout.Y_AXIS));
+		
+		close = new JButton("Close");
+		add = new JButton("Checkout");
+		
+		holder.add(close);
+		holder.add(add);
+		
+		close.addActionListener(this);
+		add.addActionListener(this);
+			
+		setLocationByPlatform(true);
+		setBackground(Color.white);
+		setTitle("Additional Information");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		getContentPane().add(holder);
+		pack();
+		setVisible(true);
+		setSize(300,500);
+		
+	}
+	
 	
 	//To Do: Fix this class. It is a mess.
 	public AdditionalInfoFrame(AbstractMediaModel item)
@@ -46,6 +77,8 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 		
 		JPanel holder = new JPanel();
 		holder.setLayout(new BoxLayout(holder, BoxLayout.Y_AXIS));
+		
+
 		
 		//This is a Mess. To Do: Rewrite/Rework
 		if(item instanceof BookModel)
@@ -176,6 +209,35 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 		pack();
 		setVisible(true);
 		setSize(300,500);
+	}
+	
+	/*The proper setItem(SomeMediaModel item) will be called 
+	 *Automatically without this class needing to know/determine what type it is. 
+	*/ 
+	public void setItem(BookModel item)
+	{
+		//Called when item is a book
+		
+		fieldNames[0] = new JLabel("In Stock: ");
+		fieldNames[1] = new JLabel("Title: ");
+		fieldNames[2] = new JLabel("Author: ");
+		fieldNames[3] = new JLabel("Published: ");
+		fieldNames[4] = new JLabel("ISBN: ");
+		fieldNames[5] = new JLabel("Country: ");
+		fieldNames[6] = new JLabel("Format: ");
+		fieldNames[7] = new JLabel("");
+		//fieldNames[8] = new JLabel("Cover Image");
+		
+	}
+	public void setItem(CDModel item)
+	{
+		//Called when item is a cd
+		
+	}
+	public void setItem(MovieModel item)
+	{
+		//Called when item is a movie
+		
 	}
 	
 	public static void registerUser(User u)
