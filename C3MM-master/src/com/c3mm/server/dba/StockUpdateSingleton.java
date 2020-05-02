@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 /*"Singleton" pattern class for updating the "in_stock" field in media database
 * Needs to be called after a user submits their checkout list.
-* Uses double locking to prevent multiple thread access */
+* Uses double-checked locking to prevent multiple thread access */
 public class StockUpdateSingleton 
 {
 	private static StockUpdateSingleton stockUpdater;
@@ -15,21 +15,23 @@ public class StockUpdateSingleton
 	}
 	    
 	public static StockUpdateSingleton getStockUpdater()
-	{
-		if(stockUpdater == null)
+	{	
+		//Double-checked access
+		if(stockUpdater == null)	//Check 1: If the instance does not exist...
 		{
-			synchronized (StockUpdateSingleton.class)
+			synchronized (StockUpdateSingleton.class)	//Locked access
 			{
-				if(stockUpdater == null)
+				if(stockUpdater == null)	//Check 2: If the instance does not exist...
 				{
-					stockUpdater = new StockUpdateSingleton();
+					stockUpdater = new StockUpdateSingleton();	//Create an instance
 				}
 			}
 	    }   
-		
-		return stockUpdater;   
+		//If check 1 or check 2 fail, then an instance already exists. 
+		return stockUpdater;	//Return the instance
 	}
 	
+	//Instance method to perform updates to the "in_stock" field of the media table in c3db.db
 	public void updateStock(String sql, String value, String id) throws SQLException
 	{
 		C3DBA c3dba = new C3DBA();

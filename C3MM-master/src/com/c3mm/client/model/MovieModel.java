@@ -84,6 +84,9 @@ public class MovieModel extends AbstractMediaModel
 	
 	public HashMap<String, String> getProperties()
 	{
+		//Movie Order id, stock, title, country, type, lang, director, year
+		//Book Order: id, stock, title, author, date, isbn, country, type, lang
+
 		HashMap<String, String>	props = new HashMap<String, String>();
 		props.put(Props.ID, String.valueOf(this.getRecId()));
 		props.put(Props.STOCK, String.valueOf(this.getInStock()));

@@ -114,7 +114,7 @@ public class MediaTileAlt extends JPanel
 	
 	private void displayAdditionalInformation()
 	{
-		AdditionalInfoFrame infoFrame = new AdditionalInfoFrame(item);	
+		//AdditionalInfoFrame infoFrame = new AdditionalInfoFrame(item);	
 	}
 	
 	@Override

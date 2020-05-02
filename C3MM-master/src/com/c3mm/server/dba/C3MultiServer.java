@@ -15,6 +15,7 @@ public class C3MultiServer
 	public static void main(String[] args) throws IOException
 	{
 		boolean listening = true;
+		int clientId = 0;
 		
 		try (ServerSocket serverSocket = new ServerSocket(PORT))
 		{
@@ -22,9 +23,19 @@ public class C3MultiServer
 			
 			while (listening)
 			{
+				//Create a client socket by accepting the request
+				Socket clientSocket = serverSocket.accept();
+				
+				//New client accepted, increment clientId
+				clientId++;
+				
 				//Dispatch a thread to handle each incoming request
-				new C3ServerThread(serverSocket.accept()).start();
+				new C3ServerThread(clientSocket).start();
+
 				System.out.println(START_MSG);
+				
+				//Write information to the server log
+				ServerActivityLog.writeToServerLog(START_MSG + "Client ID: " + clientId + clientSocket.getInetAddress());
 			}
 		}
 		catch (IOException e)

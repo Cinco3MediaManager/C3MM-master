@@ -15,10 +15,6 @@ import com.c3mm.client.model.Props.Comms;
 public class C3DBA
 {
 	private static final String C3DB = "jdbc:sqlite:c3db.db"; // database url
-
-	//Testing
-	//private static final String C3DB = "jdbc:sqlite:c3db_Copy.db"; // database url
-
 	
 	private Vector<String> rows = new Vector<String>();			//Rows contains the entries selected. Each element in rows is a ";"-delimited string of that items fields.
 	Connection con = null;
@@ -38,13 +34,9 @@ public class C3DBA
 			rs = stmt.executeQuery();
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int numberOfColumns = rsmd.getColumnCount();
-			
-			//Testing commented out next line
-			//System.out.println("Number of Columns: " + numberOfColumns);
-			
+
 			if (rs.next() == false)
 			{
-//				System.out.println(Comms.NOT_FOUND + " sql: " + sql + ", " + value);
 				rows.add(Comms.NOT_FOUND + " | sql: " + sql + ", " + value);
 			}
 			else

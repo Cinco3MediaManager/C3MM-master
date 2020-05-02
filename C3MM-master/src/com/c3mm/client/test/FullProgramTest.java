@@ -3,9 +3,10 @@ package com.c3mm.client.test;
 
 //For writing activity to client log file
 import com.c3mm.client.controller.SystemFunctions;
-
+import com.c3mm.client.model.BookModel;
 //These two are required
 import com.c3mm.client.model.C3Client;
+import com.c3mm.client.view.AdditionalInfoFrame;
 import com.c3mm.client.view.MemberGUI;
 
 public class FullProgramTest 
@@ -21,10 +22,17 @@ public class FullProgramTest
 		//Step #2
 		C3Client testClient = new C3Client();
 		
-		//Testing update using server side "Singleton" class "updateStockSingleton"
+		
+		BookModel book2 = new BookModel(1, "mybook2", "MyAuthor2", 5, "01-01-1999", "9879879874", "usa", "stream", "english", "harry_rowling.jpg");
+		AdditionalInfoFrame testFrame = new AdditionalInfoFrame(book2);
+		
+		
+		/*Testing....... 
+		Create server side "Singleton" class "updateStockSingleton"
+		
 		for(int i = 0; i < 100; i++)
 		{
-			int m = i%7;
+			int m = i%7;	//Generates range of values m = {0,1,2,3,4,5,6}
 			
 			Thread t = new Thread()
 			{
@@ -48,8 +56,8 @@ public class FullProgramTest
 			 *To see this, note the println(...) statement in the stockUpdateSingleton constructor. C3MultiServer console shows that this
 			 *line was printed only once. Therefore, only 1 stockUpdateSingleton exists.
 			 */
-			System.out.println("Number in Stock: " + testClient.getBook("book_id", "5").getInStock());
-		}
+			//System.out.println("Number in Stock: " + testClient.getBook("book_id", "5").getInStock());
+		//}
 		//End testing
 		
 		//Log the client creation
