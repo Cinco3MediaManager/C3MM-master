@@ -16,6 +16,9 @@ public class BrowserPanel extends JPanel
 	C3Client client;
 	User currentUser;
 	
+	//Test
+	static User u;
+	
 	MediaTileAlt[] bookTiles;
 	MediaTileAlt[] musicTiles;
 	MediaTileAlt[] movieTiles;
@@ -55,6 +58,12 @@ public class BrowserPanel extends JPanel
 	public void registerUser(User currentUser)
 	{
 		this.currentUser = currentUser;
+		u = currentUser;
+	}
+	
+	public static User getUser()
+	{
+		return u;
 	}
 	public void paintComponent(Graphics g)
 	{

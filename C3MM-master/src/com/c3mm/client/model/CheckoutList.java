@@ -13,6 +13,7 @@ public class CheckoutList
 	private FileWriter fileWriter;
 	private String fileName;
 	private AbstractMediaModel[] items;
+	private String[] itemNames;
 
 	public CheckoutList()
 	{
@@ -28,6 +29,7 @@ public class CheckoutList
 		}
 		
 		items = new AbstractMediaModel[MAX_ITEMS];
+		itemNames = new String[MAX_ITEMS];
 		numCheckedOut = 0;
 	}
 	
@@ -45,6 +47,7 @@ public class CheckoutList
 		}
 		
 		items = new AbstractMediaModel[MAX_ITEMS];
+		itemNames = new String[MAX_ITEMS];
 		numCheckedOut = 0;
 	}
 	
@@ -68,6 +71,43 @@ public class CheckoutList
 		}
 		
 		return(successful);
+	}
+	
+	
+	//Test
+	public int addToCheckoutList(String itemName)
+	{
+		int successful = 0;
+		
+		if(numCheckedOut < MAX_ITEMS)
+		{
+			itemNames[numCheckedOut] = itemName;	//Store the item in array
+
+			numCheckedOut++;				//Increment number of items checked-out
+			
+			successful = 1;					//Set successful to 1 (true)
+			writeToFile(itemName);				//Write the item to the file
+		}
+		else
+		{
+			System.out.println("Cannot checkout anymore books");
+			successful = 0;
+		}
+		
+		return(successful);
+	}
+	
+	private void writeToFile(String itemName)
+	{
+		try
+		{
+			fileWriter.write("Item # " + itemName + " is checked out by User: \n");
+			fileWriter.flush();
+		}
+		catch(IOException e)
+		{
+			System.out.println("Error adding to checkout list");
+		}
 	}
 	
 	private void writeToFile(AbstractMediaModel item)

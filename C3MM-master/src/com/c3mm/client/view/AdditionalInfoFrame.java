@@ -36,6 +36,8 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 	JPanel holder;
 	JPanel btnHolder;
 	
+	private String itemTitle;
+	
 	public AdditionalInfoFrame()
 	{
 		//Note this will not show the frame. showInfoFrame() must be called by an instance
@@ -93,11 +95,12 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 
 		//setupPanel();
 	}
-	public AdditionalInfoFrame(MovieModel item)
+	public AdditionalInfoFrame(MovieModel movie)
 	{
-		this.item = item;
-		numFields = 9;
-		setItem(item);
+		//this.item = item;
+		//numFields = 9;
+		item = (MovieModel) movie;
+		setItem(movie);
 
 		//setupPanel();
 	}
@@ -115,6 +118,10 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 		String type = book.getType();
 		String language = book.getLanguage();
 		String imageURL = book.getImageURL();
+		
+		//Test
+		itemTitle = itemId + ";" + title;
+		//end test
 		
 		fieldNames[0].setText("Item ID: " + itemId);
 		fieldNames[1].setText("In Stock: " + inStock);
@@ -143,6 +150,10 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 		String language = cd.getLanguage();
 		String imageURL = cd.getImageURL();
 		
+		//Test
+				itemTitle = itemId + ";" + title;
+				//end test
+		
 		fieldNames[0].setText("Item ID: " + itemId);
 		fieldNames[1].setText("In Stock: " + inStock);
 		fieldNames[2].setText("Title: " + title);
@@ -168,6 +179,10 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 		String type = movie.getType();
 		String language = movie.getLanguage();
 		String imageURL = movie.getImageURL();
+		
+		//Test
+				itemTitle = itemId + ";" + title;
+				//end test
 		
 		fieldNames[0].setText("Item ID: " + itemId);
 		fieldNames[1].setText("In Stock: " + inStock);
@@ -219,8 +234,25 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 	{	
 		//list = new CheckoutList(user.getUsername());
 		
-		list = user.getCheckoutList();
-
+		//list = user.getCheckoutList();
+		
+		list = BrowserPanel.getUser().getCheckoutList();
+		//list = new CheckoutList();
+		
+		if(list.addToCheckoutList(itemTitle) == 1)
+		{
+			System.out.println("Added: " + itemTitle);
+			//clearInfo();
+			
+			//clearInfoFrame();
+			dispose();
+		}
+		else
+		{
+			JOptionPane.showMessageDialog(this, "Checkout Limit Reached");
+		}
+		
+		/*
 		if(list.addToCheckoutList(item) == 1)
 		{
 			System.out.println("Added: " + item.getTitle());
@@ -233,6 +265,7 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 		{
 			JOptionPane.showMessageDialog(this, "Checkout Limit Reached");
 		}
+		*/
 	}
 	
 	@Override

@@ -35,6 +35,8 @@ public class MemberGUI extends JFrame implements ActionListener
 	
 	JLabel userLabel;
 	
+	BrowserPanel browserPanel;
+	
 	public MemberGUI()
 	{
 		
@@ -59,7 +61,11 @@ public class MemberGUI extends JFrame implements ActionListener
 		userLabel.setForeground(Color.white);
 		userLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 								
-		BrowserPanel browserPanel = new BrowserPanel(client);
+		browserPanel = new BrowserPanel(client);
+		
+		//test
+		//browserPanel.registerUser(currentUser);
+		//
 		
 		JPanel buttonPanel = new JPanel();
 		JPanel holder = new JPanel();
@@ -153,7 +159,9 @@ public class MemberGUI extends JFrame implements ActionListener
 		userLabel.setFont(new Font("Arial", Font.BOLD, 14));
 		userLabel.setText(currentUserInfo);
 		
-		AdditionalInfoFrame.registerUser(this.currentUser);
+		browserPanel.registerUser(currentUser);
+		//AdditionalInfoFrame.registerUser(this.currentUser);
+		
 	}
 	
 	@Override
