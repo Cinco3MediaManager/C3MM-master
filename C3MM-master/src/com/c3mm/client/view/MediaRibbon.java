@@ -28,6 +28,8 @@ public class MediaRibbon extends JPanel implements ActionListener
 	
 	private MediaTileAlt[] tiles;		//Array of MediaTiles to show in this ribbon
 	
+	private AdditionalInfoFrame bookInfoFrame;
+	
 	//No-Arg constructor.
 	public MediaRibbon()
 	{
@@ -37,8 +39,6 @@ public class MediaRibbon extends JPanel implements ActionListener
 	//Constructor with specified array of MediaTiles (incomingTiles).
 	public MediaRibbon(MediaTileAlt[] incomingTiles)
 	{
-		
-		
 		//For data safety, copy the contents of incomingTiles into tiles
 		tiles = new MediaTileAlt[MAX_ITEMS];
 		
@@ -129,6 +129,11 @@ public class MediaRibbon extends JPanel implements ActionListener
 			System.out.println("Right Arrow button clicked");
 			scrollTiles(1);			//1 means scroll right
 		}
+	}
+	
+	public static void displayAdditionalInfo()
+	{
+		
 	}
 
 }

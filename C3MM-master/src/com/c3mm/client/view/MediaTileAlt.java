@@ -28,9 +28,15 @@ public class MediaTileAlt extends JPanel
 	String imageURL;
 	JLabel imgLabel;
 	ImageIcon img;
+	
+	AdditionalInfoFrame infoFrame;
 		
 	//One way
 	private AbstractMediaModel item;
+	
+	private BookModel book;
+	private CDModel cd;
+	private MovieModel movie;
 	
 	public MediaTileAlt()
 	{
@@ -51,6 +57,9 @@ public class MediaTileAlt extends JPanel
 		xLoc = 0;
 		yLoc = 0;
 		
+		//test
+		//this.book = book;
+		
 		item = book;
 		
 		String img = "images/" + book.getImageURL();
@@ -59,6 +68,9 @@ public class MediaTileAlt extends JPanel
 		
 		displayInfo = false;
 		
+		infoFrame = new AdditionalInfoFrame();	
+		infoFrame.setItem(book);
+		
 		setupPanel();
 	}
 	public MediaTileAlt(CDModel cd)
@@ -66,6 +78,8 @@ public class MediaTileAlt extends JPanel
 		xLoc = 0;
 		yLoc = 0;
 		
+		//test
+		//this.cd = cd;
 		item = cd;
 		
 		String img = "images/" + cd.getImageURL();
@@ -73,6 +87,8 @@ public class MediaTileAlt extends JPanel
 		imageURL = img;		
 		displayInfo = false;
 		
+		infoFrame = new AdditionalInfoFrame();	
+		infoFrame.setItem(cd);
 		setupPanel();
 	}
 	public MediaTileAlt(MovieModel movie)
@@ -80,6 +96,8 @@ public class MediaTileAlt extends JPanel
 		xLoc = 25;
 		yLoc = 25;
 		
+		//test
+		//this.movie = movie;
 		item = movie;
 		
 		String img = "images/" + movie.getImageURL();
@@ -87,6 +105,9 @@ public class MediaTileAlt extends JPanel
 		imageURL = img;		
 		displayInfo = false;
 		
+		infoFrame = new AdditionalInfoFrame();	
+		infoFrame.setItem(movie);
+
 		setupPanel();
 	}
 	
@@ -97,6 +118,11 @@ public class MediaTileAlt extends JPanel
 		
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		
+		add(imgLabel);
+		setSize(width,height);
+		setLocation(xLoc, yLoc);
+		setBackground(GUIConstants.darkgray);
+		
 		//Add a mouse listener to this tile
 		addMouseListener(new MouseAdapter() 
 		{
@@ -105,16 +131,19 @@ public class MediaTileAlt extends JPanel
 				displayAdditionalInformation();
 			}
 		});
-		
-		add(imgLabel);
-		setSize(width,height);
-		setLocation(xLoc, yLoc);
-		setBackground(GUIConstants.darkgray);
 	}
 	
 	private void displayAdditionalInformation()
 	{
-		//AdditionalInfoFrame infoFrame = new AdditionalInfoFrame(item);	
+		//AdditionalInfoFrame infoFrame = new AdditionalInfoFrame(item);
+		//infoFrame.set
+		//infoFrame.showInfoFrame();
+		//infoFrame.repaint();
+		
+		//AdditionalInfoFrame info = new AdditionalInfoFrame();
+		//info.setItem(item);
+		
+		infoFrame.showInfoFrame();
 	}
 	
 	@Override

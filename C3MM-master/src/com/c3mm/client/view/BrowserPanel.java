@@ -29,14 +29,10 @@ public class BrowserPanel extends JPanel
 		createRibbons();
 	}
 	
-	//Testing
-	private void createAdditionalInfoFrame()
-	{
-		
-	}
 	
 	private void populateTileArrays()
 	{
+		//Build the media tiles using "Builder" class
 		MediaTileBuilder mtb = new MediaTileBuilder(client);
 		
 		bookTiles = mtb.getBookTiles();

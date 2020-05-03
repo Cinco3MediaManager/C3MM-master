@@ -6,6 +6,8 @@ import com.c3mm.client.controller.SystemFunctions;
 import com.c3mm.client.model.BookModel;
 //These two are required
 import com.c3mm.client.model.C3Client;
+import com.c3mm.client.model.CDModel;
+import com.c3mm.client.model.MovieModel;
 import com.c3mm.client.view.AdditionalInfoFrame;
 import com.c3mm.client.view.MemberGUI;
 
@@ -21,11 +23,27 @@ public class FullProgramTest
 		
 		//Step #2
 		C3Client testClient = new C3Client();
+
+		BookModel book1 = new BookModel(1, "mybook1", "MyAuthor1", 5, "01-01-1999", "9879879874", "usa", "stream", "english", "1984_orwell.jpg");
+		BookModel book2 = new BookModel(1, "mybook2", "MyAuthor2", 5, "02-02-1999", "9879879874", "usa", "stream", "english", "harry_rowling.jpg");
+		AdditionalInfoFrame testFrame = new AdditionalInfoFrame();
+		//testFrame.setItem(book2);
+		testFrame.setItem(book1);
+		testFrame.showInfoFrame();
+		testFrame.setItem(book2);
+		testFrame.setItem(book1);
+
 		
-		
+		/*
 		BookModel book2 = new BookModel(1, "mybook2", "MyAuthor2", 5, "01-01-1999", "9879879874", "usa", "stream", "english", "harry_rowling.jpg");
 		AdditionalInfoFrame testFrame = new AdditionalInfoFrame(book2);
 		
+		CDModel cd2 = new CDModel(1, 5, "mycd2", "usa", "collection", "english", "MyArtist2", "1999", "dark_floyd.jpg");
+		AdditionalInfoFrame testFrame2 = new AdditionalInfoFrame(cd2);
+		
+		MovieModel movie2 = new MovieModel(1, 5, "mymovie2", "usa", "stream", "english", "MyDirector2", "1999", "pulp_tarantino.jpg");
+		AdditionalInfoFrame testFrame3 = new AdditionalInfoFrame(movie2);
+		 */
 		
 		/*Testing....... 
 		Create server side "Singleton" class "updateStockSingleton"

@@ -1,7 +1,6 @@
 package com.c3mm.client.view;
 
 import java.awt.Color;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -22,7 +21,6 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 	private JButton add;
 	
 	private JLabel[] fieldNames;
-	private JLabel[] fields;
 	
 	private AbstractMediaModel item;
 	
@@ -32,78 +30,38 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 	private JLabel imgLbl;
 	private ImageIcon img;
 	
-	private int numFields;
+	private int numFields = 10;
+	
+	JPanel fieldCol;
+	JPanel holder;
+	JPanel btnHolder;
 	
 	public AdditionalInfoFrame()
 	{
-		//To Do: Enclose in a generateLabels() method with a loop
-		fieldNames = new JLabel[MAX_FIELDS];
-		fields = new JLabel[MAX_FIELDS];
-
-		JPanel holder = new JPanel();
-		holder.setLayout(new BoxLayout(holder, BoxLayout.Y_AXIS));
+		//Note this will not show the frame. showInfoFrame() must be called by an instance
+		//For the frame to contain data an instance must also call setItem(some media item)
+		fieldNames = new JLabel[numFields];
 		
 		close = new JButton("Close");
-		add = new JButton("Checkout");
-		
-		holder.add(close);
-		holder.add(add);
+		add = new JButton("Add Item");
 		
 		close.addActionListener(this);
 		add.addActionListener(this);
+
+		fieldCol = new JPanel();
+		holder = new JPanel();
 		
-		//Moved to setupPanel
-		setLocationByPlatform(true);
-		setBackground(Color.white);
-		setTitle("Additional Information");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		getContentPane().add(holder);
-		pack();
-		setVisible(true);
-		setSize(300,500);	
-	}
-	
-	public AdditionalInfoFrame(BookModel item)
-	{
-		this.item = item;
-		numFields = 10;
-		setItem(item);
-
-		setupPanel();
-	}
-	public AdditionalInfoFrame(CDModel item)
-	{
-		this.item = item;
-		numFields = 9;
-		setItem(item);
-
-		setupPanel();
-	}
-	public AdditionalInfoFrame(MovieModel item)
-	{
-		this.item = item;
-		numFields = 9;
-		setItem(item);
-
-		setupPanel();
-	}
-	
-	private void setupPanel()
-	{	
-		close = new JButton("Close");
-		add = new JButton("Add Item");
-
-		JPanel fieldCol = new JPanel();
-		JPanel fieldRow = new JPanel();
-		JPanel holder = new JPanel();
+		//Testing
+		btnHolder = new JPanel();
+		btnHolder.setLayout(new BoxLayout(btnHolder, BoxLayout.X_AXIS));
+		btnHolder.add(close);
+		btnHolder.add(add);
 		
 		fieldCol.setLayout(new BoxLayout(fieldCol, BoxLayout.Y_AXIS));
-		fieldRow.setLayout(new BoxLayout(fieldRow, BoxLayout.X_AXIS));
 		
 		for(int i = 0; i < numFields; i++)
 		{
-			//fieldRow.add(fieldNames[i]);
-			//fieldRow.add(fields[i]);
+			fieldNames[i] = new JLabel();
 			fieldCol.add(fieldNames[i]);
 		}
 		
@@ -112,274 +70,150 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 
 		holder.add(fieldCol);
 		holder.add(imgLbl);
-		holder.add(close);
-		holder.add(add);
 		
-		close.addActionListener(this);
-		add.addActionListener(this);
-		
-		setLocationByPlatform(true);
-		setBackground(Color.white);
-		setTitle("Additional Information");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		getContentPane().add(holder);
-		pack();
-		setVisible(true);
-		setSize(385,375);
+		holder.add(btnHolder);
 	}
-	/*
-	//To Do: Fix this class. It is a mess.
-	public AdditionalInfoFrame(AbstractMediaModel item)
+	
+	//Next three currently unused
+	public AdditionalInfoFrame(BookModel book)
+	{
+		//this.item = item;
+		numFields = 10;
+		setItem(book);
+
+		//Testing
+		//setupPanel();
+		//end testing
+	}
+	public AdditionalInfoFrame(CDModel cd)
+	{
+		//this.item = item;
+		//numFields = 9;
+		setItem(cd);
+
+		//setupPanel();
+	}
+	public AdditionalInfoFrame(MovieModel item)
 	{
 		this.item = item;
-		
-		//To Do: Create fields into array using specific media items (below)
-		JLabel field1;
-		JLabel field2;
-		JLabel field3;
-		JLabel field4;
-		JLabel field5;
-		JLabel field6;
-		JLabel field7;
-		JLabel field8;
-		JLabel field9;
-		JLabel imgLabel;
-		
-		JPanel holder = new JPanel();
-		holder.setLayout(new BoxLayout(holder, BoxLayout.Y_AXIS));
-		
+		numFields = 9;
+		setItem(item);
 
-		
-		//This is a Mess. To Do: Rewrite/Rework
-		if(item instanceof BookModel)
-		{
-			BookModel book = (BookModel) item;
-			
-			int inStock = book.getInStock();
-			String title = book.getTitle();
-			String author= book.getAuthor();
-			String pubDate = book.getPubDate();
-			String isbn = book.getIsbn();
-			String country = book.getCountry();
-			String type = book.getType();
-			String language = book.getLanguage();
-			String imageURL = book.getImageURL();
-			
-			//To Do: Loop through fields and create/assign to labels
-			field1 = new JLabel(Integer.toString(inStock));
-			field2 = new JLabel(title);
-			field3 = new JLabel(author);
-			field4 = new JLabel(pubDate);
-			field5 = new JLabel(isbn);
-			field6 = new JLabel(country);
-			field7 = new JLabel(type);
-			field8 = new JLabel(language);
-			
-			field9 = new JLabel();
-			ImageIcon img = new ImageIcon("images/"+imageURL);
-			field9.setIcon(img);
-			
-			holder.add(field1);
-			holder.add(field2);
-			holder.add(field3);
-			holder.add(field4);
-			holder.add(field5);
-			holder.add(field6);
-			holder.add(field7);
-			holder.add(field8);
-			holder.add(field9);
-		}
-		
-		else if(item instanceof CDModel)
-		{
-			CDModel cd = (CDModel) item;
-			
-			int inStock = cd.getInStock();
-			String title = cd.getTitle();
-			String author= cd.getArtist();
-			String pubDate = cd.getYear();
-			String country = cd.getCountry();
-			String type = cd.getType();
-			String language = cd.getLanguage();
-			String imageURL = cd.getImageURL();
-			
-			//To Do: Loop through fields and create/assign to labels
-			field1 = new JLabel(Integer.toString(inStock));
-			field2 = new JLabel(title);
-			field3 = new JLabel(author);
-			field4 = new JLabel(pubDate);
-			field6 = new JLabel(country);
-			field7 = new JLabel(type);
-			field8 = new JLabel(language);
-			
-			field9 = new JLabel();
-			ImageIcon img = new ImageIcon("images/"+imageURL);
-			field9.setIcon(img);
-			
-			holder.add(field1);
-			holder.add(field2);
-			holder.add(field3);
-			holder.add(field4);
-			holder.add(field6);
-			holder.add(field7);
-			holder.add(field8);
-			holder.add(field9);
-			
-		}
-		else if(item instanceof MovieModel)
-		{
-			MovieModel movie = (MovieModel) item;
-			
-			int inStock = movie.getInStock();
-			String title = movie.getTitle();
-			String author= movie.getDirector();
-			String pubDate = movie.getYear();
-			String country = movie.getCountry();
-			String type = movie.getType();
-			String language = movie.getLanguage();
-			String imageURL = movie.getImageURL();
-			
-			//To Do: Loop through fields and create/assign to labels
-			field1 = new JLabel(Integer.toString(inStock));
-			field2 = new JLabel(title);
-			field3 = new JLabel(author);
-			field4 = new JLabel(pubDate);
-			field6 = new JLabel(country);
-			field7 = new JLabel(type);
-			field8 = new JLabel(language);
-
-			field9 = new JLabel();
-			ImageIcon img = new ImageIcon("images/"+imageURL);
-			field9.setIcon(img);
-			
-			holder.add(field1);
-			holder.add(field2);
-			holder.add(field3);
-			holder.add(field4);
-			holder.add(field6);
-			holder.add(field7);
-			holder.add(field8);
-			holder.add(field9);
-		}
-		
-		close = new JButton("Close");
-		add = new JButton("Checkout");
-		
-		holder.add(close);
-		holder.add(add);
-		
-		close.addActionListener(this);
-		add.addActionListener(this);
-			
-		setLocationByPlatform(true);
-		setBackground(Color.white);
-		setTitle("Additional Information");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		getContentPane().add(holder);
-		pack();
-		setVisible(true);
-		setSize(300,500);
+		//setupPanel();
 	}
-	*/
+	//End Unused
 	
-	/*The proper setItem(SomeMediaModel item) will be called 
-	 *Automatically without this class needing to know/determine what type it is. 
-	*/ 
-	public void setItem(BookModel item)
+	public void setItem(BookModel book)
 	{
-		//Called when item is a book
-		//Book Order: id, stock, title, author, date, isbn, country, type, lang, imageURL
+		String itemId = Integer.toString(book.getRecId());
+		String inStock = Integer.toString(book.getInStock());
+		String title = book.getTitle();
+		String author= book.getAuthor();
+		String pubDate = book.getPubDate();
+		String isbn = book.getIsbn();
+		String country = book.getCountry();
+		String type = book.getType();
+		String language = book.getLanguage();
+		String imageURL = book.getImageURL();
+		
+		fieldNames[0].setText("Item ID: " + itemId);
+		fieldNames[1].setText("In Stock: " + inStock);
+		fieldNames[2].setText("Title: " + title);
+		fieldNames[3].setText("Author: " + author);
+		fieldNames[4].setText("Year: " + pubDate);
+		fieldNames[5].setText("ISBN: " + isbn);
+		fieldNames[6].setText("Country: " + country);
+		fieldNames[7].setText("Type: " + type);
+		fieldNames[8].setText("Language: " + language);
+		fieldNames[9].setText("Cover Photo: " + imageURL);
 
-		//Book has 10 fields
-		fieldNames = new JLabel[numFields];
-		
-		String itemId = Integer.toString(item.getRecId());
-		String inStock = Integer.toString(item.getInStock());
-		String title = item.getTitle();
-		String author= item.getAuthor();
-		String pubDate = item.getPubDate();
-		String isbn = item.getIsbn();
-		String country = item.getCountry();
-		String type = item.getType();
-		String language = item.getLanguage();
-		String imageURL = item.getImageURL();
-		
-		fieldNames[0] = new JLabel("Item ID: " + itemId);
-		fieldNames[1] = new JLabel("In Stock: " + inStock);
-		fieldNames[2] = new JLabel("Title: " + title);
-		fieldNames[3] = new JLabel("Author: " + author);
-		fieldNames[4] = new JLabel("Year: " + pubDate);
-		fieldNames[5] = new JLabel("ISBN: " + isbn);
-		fieldNames[6] = new JLabel("Country: " + country);
-		fieldNames[7] = new JLabel("Type: " + type);
-		fieldNames[8] = new JLabel("Language: " + language);
-		fieldNames[9] = new JLabel("Cover Photo: " + imageURL);		//Label to be assigned image
-		
-		img = new ImageIcon("images/"+imageURL);
-	}
-	public void setItem(CDModel item)
-	{
-		//CDModel Order: id, stock, title, country, type, lang, artist, year
-
-		fieldNames = new JLabel[8];
-		fields = new JLabel[8];
-		//No id
-		fieldNames[0] = new JLabel("In Stock: ");
-		fieldNames[1] = new JLabel("Title: ");
-		fieldNames[2] = new JLabel("Artist: ");
-		fieldNames[3] = new JLabel("Year: ");
-		//No isbn
-		fieldNames[4] = new JLabel("Country: ");
-		fieldNames[5] = new JLabel("Type: ");
-		fieldNames[6] = new JLabel("Language: ");
-		fieldNames[7] = new JLabel("Cover Photo: ");		//Blank label to be assigned image
-
-		
-		fields[0] = new JLabel(Integer.toString(item.getInStock()));
-		fields[1] = new JLabel(item.getTitle());
-		fields[2] = new JLabel(item.getArtist());
-		fields[3] = new JLabel(item.getYear());
-		fields[4] = new JLabel(item.getCountry());
-		fields[5] = new JLabel(item.getType());
-		fields[6] = new JLabel(item.getLanguage());
-		fields[7] = new JLabel(item.getImageURL());
-		
-		img = new ImageIcon("images/"+fields[7]);
-		//fields[7].setIcon(img);
-	}
-	public void setItem(MovieModel item)
-	{
-		//Called when item is a movie
-		//Movie Order id, stock, title, country, type, lang, director, year
-
-		fieldNames = new JLabel[8];
-		fields = new JLabel[8];
-		//no id
-		fieldNames[0] = new JLabel("In Stock: ");
-		fieldNames[1] = new JLabel("Title: ");
-		fieldNames[2] = new JLabel("Director: ");
-		fieldNames[3] = new JLabel("Year: ");
-		//No isbn
-		fieldNames[4] = new JLabel("Country: ");
-		fieldNames[5] = new JLabel("Type: ");
-		fieldNames[6] = new JLabel("Language: ");
-		
-		fields[0] = new JLabel(Integer.toString(item.getInStock()));
-		fields[1] = new JLabel(item.getTitle());
-		fields[2] = new JLabel(item.getDirector());
-		fields[3] = new JLabel(item.getYear());
-		fields[4] = new JLabel(item.getCountry());
-		fields[5] = new JLabel(item.getType());
-		fields[6] = new JLabel(item.getLanguage());
-		fields[7] = new JLabel(item.getImageURL());
-		
-		img = new ImageIcon("images/"+fields[7]);
-		fields[7].setIcon(img);
+		ImageIcon i = new ImageIcon("images/"+imageURL);
+		imgLbl.setIcon(i);
 	}
 	
+	public void setItem(CDModel cd)
+	{
+		String itemId = Integer.toString(cd.getRecId());
+		String inStock = Integer.toString(cd.getInStock());
+		String title = cd.getTitle();
+		String artist= cd.getArtist();
+		String year = cd.getYear();
+		String country = cd.getCountry();
+		String type = cd.getType();
+		String language = cd.getLanguage();
+		String imageURL = cd.getImageURL();
+		
+		fieldNames[0].setText("Item ID: " + itemId);
+		fieldNames[1].setText("In Stock: " + inStock);
+		fieldNames[2].setText("Title: " + title);
+		fieldNames[3].setText("Artist: " + artist);
+		fieldNames[4].setText("Year: " + year);
+		fieldNames[5].setText("Country: " + country);
+		fieldNames[6].setText("Type: " + type);
+		fieldNames[7].setText("Language: " + language);
+		fieldNames[8].setText("Cover Photo: " + imageURL);	
+		
+		ImageIcon i = new ImageIcon("images/"+imageURL);
+		imgLbl.setIcon(i);
+	}
+	
+	public void setItem(MovieModel movie)
+	{
+		String itemId = Integer.toString(movie.getRecId());
+		String inStock = Integer.toString(movie.getInStock());
+		String title = movie.getTitle();
+		String director= movie.getDirector();
+		String year = movie.getYear();
+		String country = movie.getCountry();
+		String type = movie.getType();
+		String language = movie.getLanguage();
+		String imageURL = movie.getImageURL();
+		
+		fieldNames[0].setText("Item ID: " + itemId);
+		fieldNames[1].setText("In Stock: " + inStock);
+		fieldNames[2].setText("Title: " + title);
+		fieldNames[3].setText("Director: " + director);
+		fieldNames[4].setText("Year: " + year);
+		fieldNames[5].setText("Country: " + country);
+		fieldNames[6].setText("Type: " + type);
+		fieldNames[7].setText("Language: " + language);
+		fieldNames[8].setText("Cover Photo: " + imageURL);	
+		
+		ImageIcon i = new ImageIcon("images/"+imageURL);
+		imgLbl.setIcon(i);
+	}
+		
 	public static void registerUser(User u)
 	{
 		user = u;
+	}
+	
+	public void showInfoFrame()
+	{		
+		holder.add(fieldCol);
+		holder.add(imgLbl);
+		holder.add(btnHolder);
+		
+		//holder.add(close);
+		//holder.add(add);
+		
+		setBackground(GUIConstants.darkgray);
+		setTitle("Additional Information");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		getContentPane().add(holder);
+		pack();
+		setVisible(true);
+		setSize(500,400);
+	}
+	
+	private void clearInfoFrame()
+	{
+		holder.remove(fieldCol);
+		holder.remove(imgLbl);
+		holder.remove(close);
+		holder.remove(add);
+		
+		dispose();
 	}
 	private void checkoutItem()
 	{	
@@ -390,14 +224,17 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 		if(list.addToCheckoutList(item) == 1)
 		{
 			System.out.println("Added: " + item.getTitle());
-			dispose();
+			//clearInfo();
+			
+			clearInfoFrame();
+			//dispose();
 		}
 		else
 		{
 			JOptionPane.showMessageDialog(this, "Checkout Limit Reached");
 		}
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
