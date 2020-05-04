@@ -3,12 +3,9 @@ package com.c3mm.client.test;
 
 //For writing activity to client log file
 import com.c3mm.client.controller.SystemFunctions;
-import com.c3mm.client.model.BookModel;
+
 //These two are required
 import com.c3mm.client.model.C3Client;
-import com.c3mm.client.model.CDModel;
-import com.c3mm.client.model.MovieModel;
-import com.c3mm.client.view.AdditionalInfoFrame;
 import com.c3mm.client.view.MemberGUI;
 
 public class FullProgramTest 
@@ -22,6 +19,7 @@ public class FullProgramTest
 		 */
 		
 		//Step #1 Start server separately
+
 		
 		//Step #2
 		C3Client testClient = new C3Client();		

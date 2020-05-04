@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import com.c3mm.client.controller.SearchManager;
 import com.c3mm.client.controller.SystemFunctions;
 import com.c3mm.client.model.User;
 import com.c3mm.client.model.AbstractMediaModel;
@@ -62,10 +63,6 @@ public class MemberGUI extends JFrame implements ActionListener
 		userLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 								
 		browserPanel = new BrowserPanel(client);
-		
-		//test
-		//browserPanel.registerUser(currentUser);
-		//
 		
 		JPanel buttonPanel = new JPanel();
 		JPanel holder = new JPanel();
@@ -159,9 +156,7 @@ public class MemberGUI extends JFrame implements ActionListener
 		userLabel.setFont(new Font("Arial", Font.BOLD, 14));
 		userLabel.setText(currentUserInfo);
 		
-		browserPanel.registerUser(currentUser);
-		//AdditionalInfoFrame.registerUser(this.currentUser);
-		
+		browserPanel.registerUser(currentUser);		
 	}
 	
 	@Override
@@ -182,6 +177,11 @@ public class MemberGUI extends JFrame implements ActionListener
 			 *When returning from a search, update the display to show the items found...where? In one of the ribbons?
 			 *On a new screen (ex: Create a UI window ResultsScreen?)
 			*/
+			
+			SearchManager sm = new SearchManager(client);
+		//	sm.executeSearch(searchTerm);
+			
+			sm.searchByTitle(searchTerm);
 		}
 		if(e.getSource().equals(bookButton))
 		{

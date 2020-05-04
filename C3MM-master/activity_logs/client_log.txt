@@ -62,3 +62,20 @@ Client Launched. at: 01:22:47
 Client Launched. at: 01:55:23
 Client Launched. at: 01:56:57
 Client Launched. at: 02:02:40
+Client Launched. at: 02:46:45
+Client Launched. at: 02:59:11
+Client Launched. at: 03:02:58
+Client Launched. at: 03:18:38
+Client Launched. at: 05:47:49
+Client Launched. at: 05:48:52
+Client Launched. at: 05:51:06
+Client Launched. at: 06:05:16
+Couldn't get I/O for the connection to localhost
+Exiting Program at: 06:05:35
+Client Launched. at: 06:06:18
+Client Launched. at: 06:30:16
+Client Launched. at: 06:33:05
+Client Launched. at: 06:34:04
+Client Launched. at: 06:36:58
+Client Launched. at: 06:38:34
+Client Launched. at: 07:17:05
