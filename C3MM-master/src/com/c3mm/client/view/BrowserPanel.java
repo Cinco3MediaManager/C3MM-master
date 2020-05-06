@@ -1,6 +1,5 @@
 package com.c3mm.client.view;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 

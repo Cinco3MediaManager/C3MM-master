@@ -34,16 +34,19 @@ public class SearchManager
 		//search for title
 		searchByTitle(term);
 		
-		
 		//search for language
 		searchByLanguage(term);
 		
 		//search for  country?		
-		
+		searchByCountry(term);
 		
 		//searchByAuthor();
+		
 		//searchByDirector();
+		
 		//searchByArtist();
+		
+		
 		//search cds
 		
 		//search movies
@@ -156,6 +159,64 @@ public class SearchManager
 			String candidate = movies.get(i).getLanguage();
 							
 			if(candidate.equalsIgnoreCase(language))
+			{
+				System.out.println("\n...............FOUND........" + candidate);
+				results3.add(movies.get(i));
+				AdditionalInfoFrame aif = new AdditionalInfoFrame();
+				aif.setItem(movies.get(i));
+				aif.showInfoFrame();
+			}
+		}
+	}
+	
+	public void searchByCountry(String country)
+	{
+		//Look for a book with a language equal to input language
+		List<BookModel> books = client.getAllBooks();
+		List<BookModel> results = new LinkedList<>();
+				
+		for(int i = 0; i < books.size(); i++)
+		{
+			String candidate = books.get(i).getCountry();
+					
+			if(candidate.equalsIgnoreCase(country))
+			{
+				System.out.println("\n...............FOUND........" + candidate);
+				results.add(books.get(i));
+				AdditionalInfoFrame aif = new AdditionalInfoFrame();
+				aif.setItem(books.get(i));
+				aif.showInfoFrame();
+			}
+		}
+		
+		//Look for a book with a language equal to input language
+		List<CDModel> cds = client.getAllCDs();
+		List<CDModel> results2 = new LinkedList<>();
+						
+		for(int i = 0; i < cds.size(); i++)
+		{
+			String candidate = cds.get(i).getCountry();
+							
+			if(candidate.equalsIgnoreCase(country))
+			{
+				System.out.println("\n...............FOUND........" + candidate);
+				results2.add(cds.get(i));
+				AdditionalInfoFrame aif = new AdditionalInfoFrame();
+				aif.setItem(cds.get(i));
+				aif.showInfoFrame();
+			}
+		}
+				
+				
+		//Look for a book with a language equal to input language
+		List<MovieModel> movies = client.getAllMovies();
+		List<MovieModel> results3 = new LinkedList<>();
+						
+		for(int i = 0; i < movies.size(); i++)
+		{
+			String candidate = movies.get(i).getCountry();
+							
+			if(candidate.equalsIgnoreCase(country))
 			{
 				System.out.println("\n...............FOUND........" + candidate);
 				results3.add(movies.get(i));

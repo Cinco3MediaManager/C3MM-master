@@ -1,11 +1,9 @@
 package com.c3mm.client.view;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-import com.c3mm.client.model.AbstractMediaModel;
 import com.c3mm.client.model.BookModel;
 import com.c3mm.client.model.CDModel;
 import com.c3mm.client.model.CheckoutList;
@@ -22,10 +20,10 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 	
 	private JLabel[] fieldNames;
 	
-	private AbstractMediaModel item;
+	//private AbstractMediaModel item;
 	
 	private CheckoutList list;
-	private static User user;
+	//private static User user;
 	
 	private JLabel imgLbl;
 	private ImageIcon img;
@@ -52,8 +50,7 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 
 		fieldCol = new JPanel();
 		holder = new JPanel();
-		
-		//Testing
+
 		btnHolder = new JPanel();
 		btnHolder.setLayout(new BoxLayout(btnHolder, BoxLayout.X_AXIS));
 		btnHolder.add(close);
@@ -72,7 +69,6 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 
 		holder.add(fieldCol);
 		holder.add(imgLbl);
-		
 		holder.add(btnHolder);
 	}
 	
@@ -99,7 +95,7 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 	{
 		//this.item = item;
 		//numFields = 9;
-		item = (MovieModel) movie;
+		//item = (MovieModel) movie;
 		setItem(movie);
 
 		//setupPanel();
@@ -119,10 +115,6 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 		String language = book.getLanguage();
 		String imageURL = book.getImageURL();
 		
-		//Test
-		itemTitle = itemId + ";" + title;
-		//end test
-		
 		fieldNames[0].setText("Item ID: " + itemId);
 		fieldNames[1].setText("In Stock: " + inStock);
 		fieldNames[2].setText("Title: " + title);
@@ -136,6 +128,8 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 
 		ImageIcon i = new ImageIcon("images/"+imageURL);
 		imgLbl.setIcon(i);
+		
+		itemTitle = itemId + ";" + title;
 	}
 	
 	public void setItem(CDModel cd)
@@ -149,11 +143,7 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 		String type = cd.getType();
 		String language = cd.getLanguage();
 		String imageURL = cd.getImageURL();
-		
-		//Test
-				itemTitle = itemId + ";" + title;
-				//end test
-		
+				
 		fieldNames[0].setText("Item ID: " + itemId);
 		fieldNames[1].setText("In Stock: " + inStock);
 		fieldNames[2].setText("Title: " + title);
@@ -166,6 +156,8 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 		
 		ImageIcon i = new ImageIcon("images/"+imageURL);
 		imgLbl.setIcon(i);
+		
+		itemTitle = itemId + ";" + title;
 	}
 	
 	public void setItem(MovieModel movie)
@@ -200,7 +192,7 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 		
 	public static void registerUser(User u)
 	{
-		user = u;
+		//user = u;
 	}
 	
 	public void showInfoFrame()
@@ -208,9 +200,6 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 		holder.add(fieldCol);
 		holder.add(imgLbl);
 		holder.add(btnHolder);
-		
-		//holder.add(close);
-		//holder.add(add);
 		
 		setBackground(GUIConstants.darkgray);
 		setTitle("Additional Information");
@@ -220,57 +209,27 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 		setVisible(true);
 		setSize(500,400);
 	}
-	
-	private void clearInfoFrame()
-	{
-		holder.remove(fieldCol);
-		holder.remove(imgLbl);
-		holder.remove(close);
-		holder.remove(add);
-		
-		dispose();
-	}
+
 	private void checkoutItem()
 	{	
-		//list = new CheckoutList(user.getUsername());
-		
-		//list = user.getCheckoutList();
-		
 		list = BrowserPanel.getUser().getCheckoutList();
-		//list = new CheckoutList();
 		
 		if(list.addToCheckoutList(itemTitle) == 1)
 		{
 			System.out.println("Added: " + itemTitle);
-			//clearInfo();
-			
-			//clearInfoFrame();
+
 			dispose();
 		}
 		else
 		{
 			JOptionPane.showMessageDialog(this, "Checkout Limit Reached");
 		}
-		
-		/*
-		if(list.addToCheckoutList(item) == 1)
-		{
-			System.out.println("Added: " + item.getTitle());
-			//clearInfo();
-			
-			clearInfoFrame();
-			//dispose();
-		}
-		else
-		{
-			JOptionPane.showMessageDialog(this, "Checkout Limit Reached");
-		}
-		*/
+
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent e)
+	{
 		if(e.getSource().equals(close))
 		{
 			System.out.println("The close button was pressed. Closing Additional information frame");

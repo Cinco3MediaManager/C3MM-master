@@ -85,6 +85,11 @@ public class User
 		return password;
 	}
 	
+	public String getType()
+	{
+		return type;
+	}
+	
 	/*
 	 * If time, other field-specific accessors and mutators should be added so that fields can be set/returned individually if needed
 	 */

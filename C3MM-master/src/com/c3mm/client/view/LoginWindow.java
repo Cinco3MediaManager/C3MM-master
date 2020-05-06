@@ -142,6 +142,17 @@ public class LoginWindow extends JFrame
 		gui.registerUser(user);
 	}
 	
+	public void launchEmployeeGUI()
+	{
+		EmployeeGUI gui = new EmployeeGUI(client);
+		User user =  client.getUser("username", username);
+	}
+	
+	private void launchAdminGUI()
+	{
+		AdminGUI gui = new AdminGUI();
+	}
+	
 	private class ButtonListener implements ActionListener
 	{
 		@Override
@@ -151,8 +162,22 @@ public class LoginWindow extends JFrame
 			{
 				if(verifyLogin())
 				{
-					//Launch the member GUI
-					launchMemberGUI();
+					String type = client.getUser("username", username).getType();
+					
+					if(type.equals("employee"))
+					{
+						//launch the member gui
+						launchEmployeeGUI();
+					}
+					else if(type.equals("admin"))
+					{
+						launchAdminGUI();
+					}
+					else if(type.equals("member"))
+					{
+						//Launch the member GUI
+						launchMemberGUI();
+					}
 					
 					//Close the login window
 					dispose();

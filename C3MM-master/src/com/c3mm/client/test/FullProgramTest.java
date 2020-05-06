@@ -6,6 +6,8 @@ import com.c3mm.client.controller.SystemFunctions;
 
 //These two are required
 import com.c3mm.client.model.C3Client;
+import com.c3mm.client.view.AddItemWindow;
+import com.c3mm.client.view.EmployeeGUI;
 import com.c3mm.client.view.MemberGUI;
 
 public class FullProgramTest 
@@ -18,13 +20,17 @@ public class FullProgramTest
 		 *3. Use the Swing Event-Dispatcher to launch the login window 
 		 */
 		
-		//Step #1 Start server separately
-
-		
 		//Step #2
 		C3Client testClient = new C3Client();		
 		//Log the client creation
 		SystemFunctions.writeToClientLog("Client Launched.");
+		
+		
+		//Testing
+		EmployeeGUI egui = new EmployeeGUI(testClient);
+		//AddItemWindow aiw = new AddItemWindow(testClient, "book");
+		
+		//end testing
 		
 		//Step #3
 		javax.swing.SwingUtilities.invokeLater(new Runnable() 
