@@ -1,4 +1,4 @@
-
+//JW
 package com.c3mm.client.test;
 
 //For writing activity to client log file
@@ -6,7 +6,8 @@ import com.c3mm.client.controller.SystemFunctions;
 
 //These two are required
 import com.c3mm.client.model.C3Client;
-import com.c3mm.client.view.AddItemWindow;
+import com.c3mm.client.model.CheckoutListModel;
+import com.c3mm.client.view.AdminGUI;
 import com.c3mm.client.view.EmployeeGUI;
 import com.c3mm.client.view.MemberGUI;
 
@@ -24,14 +25,7 @@ public class FullProgramTest
 		C3Client testClient = new C3Client();		
 		//Log the client creation
 		SystemFunctions.writeToClientLog("Client Launched.");
-		
-		
-		//Testing
-		EmployeeGUI egui = new EmployeeGUI(testClient);
-		//AddItemWindow aiw = new AddItemWindow(testClient, "book");
-		
-		//end testing
-		
+
 		//Step #3
 		javax.swing.SwingUtilities.invokeLater(new Runnable() 
 		{

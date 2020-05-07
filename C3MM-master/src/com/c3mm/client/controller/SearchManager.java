@@ -1,3 +1,4 @@
+//JW
 package com.c3mm.client.controller;
 
 import java.util.LinkedList;
@@ -12,7 +13,7 @@ import com.c3mm.client.view.AdditionalInfoFrame;
 
 public class SearchManager
 {
-	private String term;
+	//private String term;
 	private C3Client client;
 	
 	public SearchManager()
@@ -39,17 +40,7 @@ public class SearchManager
 		
 		//search for  country?		
 		searchByCountry(term);
-		
-		//searchByAuthor();
-		
-		//searchByDirector();
-		
-		//searchByArtist();
-		
-		
-		//search cds
-		
-		//search movies
+
 	}
 	
 	//Search for media by title. All media is searched and items with a matching title are stored in results.

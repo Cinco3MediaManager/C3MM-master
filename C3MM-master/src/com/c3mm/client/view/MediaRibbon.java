@@ -1,25 +1,20 @@
 package com.c3mm.client.view;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import com.c3mm.client.model.BookModel;
-import com.c3mm.client.model.CDModel;
-import com.c3mm.client.model.MovieModel;
-
 public class MediaRibbon extends JPanel implements ActionListener
 {
+	/**
+	 * Automatically added by Eclipse
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private JButton rightArrow;
 	
 	private int cursor;		//Track the ribbons position (rotation)
@@ -28,7 +23,7 @@ public class MediaRibbon extends JPanel implements ActionListener
 	
 	private MediaTileAlt[] tiles;		//Array of MediaTiles to show in this ribbon
 	
-	private AdditionalInfoFrame bookInfoFrame;
+	//private AdditionalInfoFrame bookInfoFrame;
 	
 	//No-Arg constructor.
 	public MediaRibbon()
@@ -53,13 +48,13 @@ public class MediaRibbon extends JPanel implements ActionListener
 	
 	public void composeRibbon()
 	{
-		cursor = 0;		//Start at position 0
+		cursor = 0;						//Start at position 0
 		rightArrow = new JButton();		//Create Button to scroll through the tiles		 
-		rightArrow.setBackground(GUIConstants.darkgray);		//Assign a background color
-		rightArrow.setIcon(new ImageIcon("images/arrow_right.jpg"));		//Set an image for the button
+		rightArrow.setBackground(GUIConstants.darkgray);				//Assign a background color
+		rightArrow.setIcon(new ImageIcon("images/arrow_right.jpg"));	//Set an image for the button
 		rightArrow.addActionListener(this);		//Register button for action listener
 
-		setLayout(new GridLayout(1,4));		//Ribbon is a 1 x 4 grid with 3 tiles and a button
+		setLayout(new GridLayout(1,4));			//Ribbon is a 1 x 4 grid with 3 tiles and a button
 		
 		add(tiles[0]);			//Add tiles to ribbon
 		add(tiles[1]);
@@ -112,7 +107,7 @@ public class MediaRibbon extends JPanel implements ActionListener
 			
 			add(rightArrow);	//Right arrow button
 
-			revalidate();	//Important, must be called to see changes
+			revalidate();		//Important, must be called to see changes
 		}
 	}
 	
@@ -129,11 +124,6 @@ public class MediaRibbon extends JPanel implements ActionListener
 			System.out.println("Right Arrow button clicked");
 			scrollTiles(1);			//1 means scroll right
 		}
-	}
-	
-	public static void displayAdditionalInfo()
-	{
-		
 	}
 
 }

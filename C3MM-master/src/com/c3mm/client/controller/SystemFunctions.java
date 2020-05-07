@@ -62,7 +62,7 @@ public class SystemFunctions
 		}
 		catch(NullPointerException e)
 		{
-			
+			e.printStackTrace();
 		}
 		
 		return valid;
@@ -70,13 +70,11 @@ public class SystemFunctions
 	
 	public static void writeToClientLog(String message)
 	{
-		/*The logs written here will be available for administrators to view through the Administrator UI.
-		 *To Do: Create Administrator UI
-		*/
+		//The logs written here will be available for administrators to view through the Administrator UI.
 		FileWriter fileWriter = null;
 		try
 		{
-			SimpleDateFormat hms = new SimpleDateFormat("hh:mm:ss");		//hms stands for hour, minute, second;the time format used
+			SimpleDateFormat hms = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");		//hms stands for hour, minute, second;the time format used
 			
 			String time = hms.format(new Date());	
 			fileWriter = new FileWriter(Log.LOG_FILE_CLIENT, true);

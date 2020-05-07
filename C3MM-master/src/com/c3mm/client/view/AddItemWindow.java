@@ -1,3 +1,4 @@
+//JW
 package com.c3mm.client.view;
 
 import java.awt.Color;
@@ -8,16 +9,13 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.c3mm.client.controller.SystemFunctions;
 import com.c3mm.client.model.BookModel;
 import com.c3mm.client.model.C3Client;
 import com.c3mm.client.model.CDModel;
 import com.c3mm.client.model.MovieModel;
-import com.c3mm.client.model.User;
 import com.c3mm.client.model.Props.Table;
 
 public class AddItemWindow extends JFrame implements ActionListener
@@ -82,11 +80,6 @@ public class AddItemWindow extends JFrame implements ActionListener
 		fieldHolder.add(reset);
 		fieldHolder.add(create);
 		fieldHolder.add(close);
-
-		//
-		//holder.add(reset);				//Add the Buttons
-		//holder.add(create);
-		//holder.add(close);
 		
 		reset.addActionListener(this);	//Register buttons for action events
 		create.addActionListener(this);

@@ -1,3 +1,4 @@
+//SY
 package com.c3mm.server.dba;
 
 import java.sql.Connection;
@@ -14,7 +15,7 @@ import com.c3mm.client.model.Props.Comms;
 
 public class C3DBA
 {
-	private static final String C3DB = "jdbc:sqlite:c3db.db"; // database url
+	private static final String C3DB = "jdbc:sqlite:c3db.db"; 	// database url
 	
 	private Vector<String> rows = new Vector<String>();			//Rows contains the entries selected. Each element in rows is a ";"-delimited string of that items fields.
 	Connection con = null;

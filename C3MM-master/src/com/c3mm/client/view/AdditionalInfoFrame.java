@@ -1,3 +1,4 @@
+//JW
 package com.c3mm.client.view;
 
 import java.awt.event.ActionEvent;
@@ -5,15 +6,20 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import com.c3mm.client.model.BookModel;
+import com.c3mm.client.model.C3Client;
 import com.c3mm.client.model.CDModel;
 import com.c3mm.client.model.CheckoutList;
+import com.c3mm.client.model.CheckoutListModel;
 import com.c3mm.client.model.MovieModel;
 import com.c3mm.client.model.User;
 
-//To Do: fix this. (I have an idea but dont have time right now)
+
 public class AdditionalInfoFrame extends JFrame implements ActionListener
 {
-	private static final int MAX_FIELDS = 9;		//The maximum number of fields to display
+	/**
+	 * Automatically added by Eclipse
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	private JButton close;
 	private JButton add;
@@ -22,7 +28,7 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 	
 	//private AbstractMediaModel item;
 	
-	private CheckoutList list;
+	//private CheckoutList list;
 	//private static User user;
 	
 	private JLabel imgLbl;
@@ -72,36 +78,6 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 		holder.add(btnHolder);
 	}
 	
-	//Next three currently unused
-	public AdditionalInfoFrame(BookModel book)
-	{
-		//this.item = item;
-		numFields = 10;
-		setItem(book);
-
-		//Testing
-		//setupPanel();
-		//end testing
-	}
-	public AdditionalInfoFrame(CDModel cd)
-	{
-		//this.item = item;
-		//numFields = 9;
-		setItem(cd);
-
-		//setupPanel();
-	}
-	public AdditionalInfoFrame(MovieModel movie)
-	{
-		//this.item = item;
-		//numFields = 9;
-		//item = (MovieModel) movie;
-		setItem(movie);
-
-		//setupPanel();
-	}
-	//End Unused
-	
 	public void setItem(BookModel book)
 	{
 		String itemId = Integer.toString(book.getRecId());
@@ -128,8 +104,8 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 
 		ImageIcon i = new ImageIcon("images/"+imageURL);
 		imgLbl.setIcon(i);
-		
-		itemTitle = itemId + ";" + title;
+
+		itemTitle = title;
 	}
 	
 	public void setItem(CDModel cd)
@@ -157,7 +133,7 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 		ImageIcon i = new ImageIcon("images/"+imageURL);
 		imgLbl.setIcon(i);
 		
-		itemTitle = itemId + ";" + title;
+		itemTitle = title;
 	}
 	
 	public void setItem(MovieModel movie)
@@ -171,11 +147,7 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 		String type = movie.getType();
 		String language = movie.getLanguage();
 		String imageURL = movie.getImageURL();
-		
-		//Test
-				itemTitle = itemId + ";" + title;
-				//end test
-		
+						
 		fieldNames[0].setText("Item ID: " + itemId);
 		fieldNames[1].setText("In Stock: " + inStock);
 		fieldNames[2].setText("Title: " + title);
@@ -188,11 +160,8 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 		
 		ImageIcon i = new ImageIcon("images/"+imageURL);
 		imgLbl.setIcon(i);
-	}
 		
-	public static void registerUser(User u)
-	{
-		//user = u;
+		itemTitle = title;
 	}
 	
 	public void showInfoFrame()
@@ -211,18 +180,30 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 	}
 
 	private void checkoutItem()
-	{	
-		list = BrowserPanel.getUser().getCheckoutList();
-		
-		if(list.addToCheckoutList(itemTitle) == 1)
-		{
-			System.out.println("Added: " + itemTitle);
+	{		
+		String username = BrowserPanel.getUser().getUsername();
+		C3Client client = new C3Client();
 
-			dispose();
+		CheckoutListModel clm = client.getCheckoutList("username", username);
+		
+		if(clm.getTitle(1).equals("null"))
+		{
+			client.updateCheckout("title1", itemTitle, username);
+			client.updateCheckout("due_date1", "7 Days", username);
+		}
+		else if(clm.getTitle(2).equals("null"))
+		{
+			client.updateCheckout("title2", itemTitle, username);
+			client.updateCheckout("due_date2", "7 Days", username);
+		}
+		else if(clm.getTitle(3).equals("null"))
+		{
+			client.updateCheckout("title3", itemTitle, username);
+			client.updateCheckout("due_date3", "7 Days", username);
 		}
 		else
 		{
-			JOptionPane.showMessageDialog(this, "Checkout Limit Reached");
+			JOptionPane.showMessageDialog(this, "You have reached the checkout limit.\nReturn items to checkout more books");
 		}
 
 	}
@@ -238,6 +219,7 @@ public class AdditionalInfoFrame extends JFrame implements ActionListener
 		if(e.getSource().equals(add))
 		{
 			checkoutItem();
+			dispose();
 		}
 	}
 

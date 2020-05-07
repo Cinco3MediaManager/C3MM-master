@@ -1,3 +1,4 @@
+//JW
 package com.c3mm.client.view;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class MediaTileBuilder
 
 		List<BookModel> books = client.getAllBooks();
 		
+		//test change
 		for(int i = 0; i < GUIConstants.MAX_TILES; i++)
 		{
 			MediaTileAlt tile = new MediaTileAlt(books.get(i));

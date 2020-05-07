@@ -1,3 +1,4 @@
+//JW
 package com.c3mm.client.view;
 
 import java.awt.Color;
@@ -8,6 +9,7 @@ import javax.swing.*;
 
 import com.c3mm.client.controller.SystemFunctions;
 import com.c3mm.client.model.C3Client;
+import com.c3mm.client.model.CheckoutListModel;
 import com.c3mm.client.model.Props.Table;
 import com.c3mm.client.model.User;
 
@@ -111,11 +113,13 @@ public class CreateAccountWindow extends JFrame implements ActionListener
 
 			User user = new User(userName, hashPassword, firstName, lastName, address, email, type);
 			
+			CheckoutListModel clm = new CheckoutListModel(userName, "null", "null", "null", "null", "null", "null", "0.0");			
 			//Check if "username" already exists before inserting because "username" must be unique
 			if(client.isNameAvailable(userName) == true)
 			{
 				//If username is available...
 				client.insert(user.getProperties(), Table.USERS);		//Insert the user
+				client.insert(clm.getProperties(), "checkout");
 				dispose();												//Close this window
 				
 				JOptionPane.showMessageDialog(this, "Account Creation Successful. You may now Login");

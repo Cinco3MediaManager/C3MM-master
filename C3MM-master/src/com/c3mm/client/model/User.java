@@ -1,6 +1,6 @@
+//HW
 package com.c3mm.client.model;
 
-//package net.sqliteconnection.model;
 import java.util.HashMap;
 
 public class User 
@@ -17,8 +17,7 @@ public class User
 	private String type;
 	
 	private String[] information;
-	
-	
+		
 	private HashMap<String, String[]> dataBase;
 	
 	private HashMap<String, String> properties;

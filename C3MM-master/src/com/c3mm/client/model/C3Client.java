@@ -1,3 +1,4 @@
+//SY
 package com.c3mm.client.model;
 import java.io.*;
 import java.net.*;
@@ -25,10 +26,7 @@ public class C3Client
 	Vector<String> results = null;
 	
 	private void sendRequest(String message)
-	{
-		//For My Machine
-		String local = "192.168.1.7";
-		
+	{	
 		try (Socket socket = new Socket(InetAddress.getLocalHost(), PORT); // connect to the server socket. 
 				PrintWriter out = new PrintWriter(socket.getOutputStream(), true); // use this to send requests to server
 				BufferedReader in = new BufferedReader( new InputStreamReader(socket.getInputStream()) ); ) // use this to read response from server 
@@ -113,36 +111,7 @@ public class C3Client
 		}
 		return book;
 	}
-	
-	/*ORIGINAL
-	public List<BookModel> getAllBooks()
-	{
-		select(Table.BOOKS);
-		List<BookModel> books = new LinkedList<>();
 		
-		for (String row : results)
-		{
-			String[] values = row.split(Comms.DELIM);
-			books.add(
-				new BookModel(Integer.parseInt(values[0]), // id
-					values[1], // title
-					values[2], // author
-					Integer.parseInt(values[3]), // in-stock
-					values[4], // publication date
-					values[5], // ISBN
-					values[6], // country
-					values[7], // type
-					values[8]  // language
-				)
-			);
-		}
-		
-		return books;
-	}
-	*/
-	
-	//Testing done with copy...works fine
-	//Note: addition of imageURL field (here and in c3db.db
 	public List<BookModel> getAllBooks()
 	{
 		select(Table.BOOKS);
@@ -302,6 +271,18 @@ public class C3Client
 		update(Table.MOVIES, colToUpdate, updValue, "movie_id", recId);
 		return results.get(0).contains(Comms.ROW_UPD);
 	}
+	
+	public boolean updateCheckout(String colToUpdate, String updValue, String recId)
+	{
+		update("checkout", colToUpdate, updValue, "username", recId);
+		return results.get(0).contains(Comms.ROW_UPD);
+	}
+	
+	public boolean updateFines(String updValue, String recId)
+	{
+		update("checkout", "fines", updValue, "username", recId);
+		return results.get(0).contains(Comms.ROW_UPD);
+	}
 
 	private void update(String table, String colToUpd, String value, String idCol, String idVal)
 	{
@@ -349,7 +330,6 @@ public class C3Client
 		sendRequest(msg);
 	}
 	
-	//Testing...so far works fine
 	public User getUser(String field, String param)
 	{
 		select(Table.USERS, field, param);
@@ -367,7 +347,25 @@ public class C3Client
 		return user;
 	}
 	
-	//Testing. Currently works fine
+	public CheckoutListModel getCheckoutList(String field, String param)
+	{
+		//Takes in a field and string and returns a checkout list model object
+		select("checkout", "username", param);
+		String[] values;
+		CheckoutListModel clm = null;
+		try
+		{
+			values = results.get(0).split(Comms.DELIM);	
+			clm = new CheckoutListModel(values[0], values[1], values[2], values[3], values[4], values[5], values[6], values[7]);
+		}
+		catch (Exception e)
+		{
+			System.err.println("getUser-> " + Msg.USER_NF );
+		}		
+		return clm;
+	}
+	
+	
 	public boolean isNameAvailable(String name)
 	{
 		boolean available = false;
@@ -380,11 +378,9 @@ public class C3Client
 		}
 		catch (Exception e)
 		{
-			System.err.println("HERE>>>HERE " + Msg.USER_NF );
+			//System.err.println("HERE>>>HERE " + Msg.USER_NF );
 			
 			//If a user was not found, then the username is available
-			//To Do: Alter approash to not rely on an error being thrown to 
-			//know a user with that name does not exist
 			available = true;
 		}
 		

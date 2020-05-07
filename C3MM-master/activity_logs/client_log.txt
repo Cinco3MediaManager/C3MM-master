@@ -1,101 +1,35 @@
-Client Launched. at: 04:33:37
-Client Launched. at: 04:39:09
-Client Launched. at: 04:41:45
-Client Launched. at: 04:47:41
-Client Launched. at: 04:49:09
-Client Launched. at: 04:56:04
-Client Launched. at: 04:56:31
-Client Launched. at: 04:57:34
-Client Launched. at: 05:10:51
-Client Launched. at: 05:11:12
-Client Launched. at: 05:12:53
-Client Launched. at: 05:13:51
-Client Launched. at: 05:14:13
-Client Launched. at: 05:14:28
-Client Launched. at: 05:14:46
-Client Launched. at: 05:14:54
-Client Launched. at: 05:15:20
-Client Launched. at: 05:15:39
-Client Launched. at: 05:15:59
-Client Launched. at: 05:16:18
-Client Launched. at: 05:18:15
-Client Launched. at: 05:20:24
-Client Launched. at: 05:21:40
-Client Launched. at: 05:21:56
-Client Launched. at: 05:37:18
-Client Launched. at: 05:45:17
-Client Launched. at: 05:51:32
-Client Launched. at: 10:57:51
-Client Launched. at: 11:23:48
-Client Launched. at: 11:31:14
-Client Launched. at: 11:32:34
-Client Launched. at: 11:39:58
-Client Launched. at: 11:54:01
-Client Launched. at: 11:54:57
-Client Launched. at: 12:02:15
-Client Launched. at: 12:04:27
-Client Launched. at: 12:06:13
-Client Launched. at: 12:07:51
-Client Launched. at: 12:08:02
+Client Launched. at: 06/05/2020 19:23:36
+Client Launched. at: 06/05/2020 19:27:33
 Couldn't get I/O for the connection to localhost
-Exiting Program at: 12:08:20
-Client Launched. at: 12:08:39
-Client Launched. at: 12:15:37
-Client Launched. at: 12:40:56
-Client Launched. at: 12:41:19
-Client Launched. at: 12:41:31
-Client Launched. at: 12:44:58
-Client Launched. at: 12:45:14
-Client Launched. at: 12:50:14
-Client Launched. at: 12:51:35
-Client Launched. at: 12:58:32
-Client Launched. at: 01:00:31
-Client Launched. at: 01:01:29
-Client Launched. at: 01:03:05
-Client Launched. at: 01:04:40
-Client Launched. at: 02:19:30
-Client Launched. at: 01:02:42
-Client Launched. at: 01:03:27
-Client Launched. at: 01:12:55
-Client Launched. at: 01:20:02
-Client Launched. at: 01:22:47
-Client Launched. at: 01:55:23
-Client Launched. at: 01:56:57
-Client Launched. at: 02:02:40
-Client Launched. at: 02:46:45
-Client Launched. at: 02:59:11
-Client Launched. at: 03:02:58
-Client Launched. at: 03:18:38
-Client Launched. at: 05:47:49
-Client Launched. at: 05:48:52
-Client Launched. at: 05:51:06
-Client Launched. at: 06:05:16
-Couldn't get I/O for the connection to localhost
-Exiting Program at: 06:05:35
-Client Launched. at: 06:06:18
-Client Launched. at: 06:30:16
-Client Launched. at: 06:33:05
-Client Launched. at: 06:34:04
-Client Launched. at: 06:36:58
-Client Launched. at: 06:38:34
-Client Launched. at: 07:17:05
-Client Launched. at: 09:21:00
-Client Launched. at: 09:22:24
-Client Launched. at: 09:23:17
-Client Launched. at: 09:27:07
-Client Launched. at: 08:52:27
-Client Launched. at: 08:55:39
-Client Launched. at: 09:06:29
-Client Launched. at: 09:06:54
-Client Launched. at: 11:39:40
-Client Launched. at: 11:40:14
-Client Launched. at: 11:40:52
-Client Launched. at: 11:42:20
-Client Launched. at: 12:12:46
-Client Launched. at: 12:14:57
-Client Launched. at: 12:16:59
-Couldn't get I/O for the connection to localhost
-Exiting Program at: 12:17:39
-Client Launched. at: 12:17:51
-Client Launched. at: 12:20:51
-Client Launched. at: 12:36:25
+Exiting Program at: 06/05/2020 19:27:37
+Client Launched. at: 06/05/2020 19:27:41
+Client Launched. at: 06/05/2020 19:28:08
+Client Launched. at: 06/05/2020 19:28:58
+Client Launched. at: 06/05/2020 19:33:02
+Client Launched. at: 06/05/2020 19:34:24
+Client Launched. at: 06/05/2020 19:36:04
+Client Launched. at: 06/05/2020 19:37:53
+Client Launched. at: 06/05/2020 19:40:24
+Client Launched. at: 06/05/2020 19:41:01
+Client Launched. at: 06/05/2020 19:43:12
+Client Launched. at: 06/05/2020 19:44:36
+Client Launched. at: 06/05/2020 19:45:13
+Client Launched. at: 06/05/2020 19:46:33
+Client Launched. at: 06/05/2020 19:47:52
+Client Launched. at: 06/05/2020 19:48:23
+Client Launched. at: 06/05/2020 19:50:20
+Client Launched. at: 06/05/2020 19:51:37
+Client Launched. at: 06/05/2020 20:00:44
+Client Launched. at: 06/05/2020 20:03:07
+Client Launched. at: 06/05/2020 20:07:18
+Client Launched. at: 06/05/2020 20:10:05
+Client Launched. at: 06/05/2020 20:11:43
+Client Launched. at: 06/05/2020 20:13:17
+Client Launched. at: 06/05/2020 20:22:54
+Client Launched. at: 06/05/2020 20:27:27
+Client Launched. at: 06/05/2020 20:28:45
+Client Launched. at: 06/05/2020 20:37:04
+Client Launched. at: 06/05/2020 21:00:38
+Client Launched. at: 06/05/2020 21:04:45
+Client Launched. at: 06/05/2020 21:17:47
+Client Launched. at: 06/05/2020 21:20:06

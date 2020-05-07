@@ -10,7 +10,12 @@ import com.c3mm.client.model.User;
 
 public class BrowserPanel extends JPanel
 {
-	private static final int MAX_TILES = 10;
+	/**
+	 * Automatically added by Eclipse
+	 */
+	private static final long serialVersionUID = 1L;
+
+	//private static final int MAX_TILES = 10;
 		
 	C3Client client;
 	User currentUser;

@@ -1,3 +1,4 @@
+//JW
 package com.c3mm.client.view;
 
 import java.awt.*;
@@ -16,27 +17,25 @@ import com.c3mm.client.model.Props.Table;
 
 public class MemberGUI extends JFrame implements ActionListener
 {
-	Color gray2 = new Color(105,105,105);
-	
-	private int ribbonSizeBook = 3;
-	private int ribbonSizeMusic = 3;
-	private int ribbonSizeMovie = 3;
+	/**
+	 * Automatically added by Eclipse
+	 */
+	private static final long serialVersionUID = 1L;
 
-	JButton searchButton;
-	JButton quitButton;
-	JButton bookButton ;
-	JButton musicButton;
-	JButton movieButton;
+	private JButton quitButton;
+	private JButton titleButton ;
+	private JButton languageButton;
+	private JButton countryButton;
+	private JButton logoutButton;
 	
-	C3Client client;
-	User currentUser;	
-	//CheckoutList checkoutList;
+	private C3Client client;
+	private User currentUser;	
 	
 	private String currentUserInfo;
 	
-	JLabel userLabel;
+	private JLabel userLabel;
 	
-	BrowserPanel browserPanel;
+	private BrowserPanel browserPanel;
 	
 	public MemberGUI()
 	{
@@ -45,18 +44,18 @@ public class MemberGUI extends JFrame implements ActionListener
 	public MemberGUI(C3Client client)
 	{	
 		this.client = client;
-				
-		JLabel menuLabel = new JLabel("Menu");
-		menuLabel.setForeground(Color.white);
-		menuLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		JLabel welcomeLabel = new JLabel("Welcome to C3");
 		welcomeLabel.setForeground(Color.white);
 		welcomeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		JLabel memberLabel = new JLabel("Member");
+		JLabel memberLabel = new JLabel("Member:");
 		memberLabel.setForeground(Color.white);
 		memberLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		JLabel searchLabel = new JLabel("Search By: ");
+		searchLabel.setForeground(Color.white);
+		searchLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		userLabel = new JLabel();
 		userLabel.setForeground(Color.white);
@@ -68,60 +67,59 @@ public class MemberGUI extends JFrame implements ActionListener
 		JPanel holder = new JPanel();
 		holder.setLayout(new BoxLayout(holder, BoxLayout.X_AXIS));
 
-		searchButton = new JButton("Search");
 		quitButton = new JButton( "Quit");
 		
-		bookButton = new JButton("Books");
-		musicButton = new JButton("Music");
-		movieButton = new JButton("Movies");
+		titleButton = new JButton("    Title   ");
+		languageButton = new JButton("Language");
+		countryButton = new JButton("Country ");
+		logoutButton = new JButton("Logout");
 
-		searchButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-		searchButton.setBackground(Color.white);
-		
 		quitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		quitButton.setBackground(Color.white);
 
-		bookButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-		bookButton.setBackground(Color.white);
+		titleButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		titleButton.setBackground(Color.white);
 
-		musicButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-		musicButton.setBackground(Color.white);
+		languageButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		languageButton.setBackground(Color.white);
 
-		movieButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-		movieButton.setBackground(Color.white);
+		countryButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		countryButton.setBackground(Color.white);
 		
-		searchButton.addActionListener(this);
+		logoutButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		logoutButton.setBackground(Color.white);
+		
+		logoutButton.addActionListener(this);
 		quitButton.addActionListener(this);
-		bookButton.addActionListener(this);
-		musicButton.addActionListener(this);
-		movieButton.addActionListener(this);
+		titleButton.addActionListener(this);
+		languageButton.addActionListener(this);
+		countryButton.addActionListener(this);
 
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
-		buttonPanel.add(menuLabel);
-		
-		buttonPanel.add(Box.createRigidArea(new Dimension(0,25)));
-		buttonPanel.add(searchButton);
-		
-		buttonPanel.add(Box.createRigidArea(new Dimension(0,25)));
-		buttonPanel.add(bookButton);
-		
-		buttonPanel.add(Box.createRigidArea(new Dimension(0,25)));
-		buttonPanel.add(musicButton);
-		
-		buttonPanel.add(Box.createRigidArea(new Dimension(0,25)));
-		buttonPanel.add(movieButton);
-		
-		buttonPanel.add(Box.createRigidArea(new Dimension(0,25)));
-		buttonPanel.add(quitButton);
-		
-		buttonPanel.add(Box.createRigidArea(new Dimension(0,25)));
 		buttonPanel.add(welcomeLabel);
 		
 		buttonPanel.add(Box.createRigidArea(new Dimension(0,25)));
 		buttonPanel.add(memberLabel);
 		buttonPanel.add(userLabel);
 		
+		buttonPanel.add(Box.createRigidArea(new Dimension(0,25)));
+		buttonPanel.add(searchLabel);
+		
+		buttonPanel.add(Box.createRigidArea(new Dimension(0,5)));
+		buttonPanel.add(titleButton);
+		
+		buttonPanel.add(Box.createRigidArea(new Dimension(0,5)));
+		buttonPanel.add(languageButton);
+		
+		buttonPanel.add(Box.createRigidArea(new Dimension(0,5)));
+		buttonPanel.add(countryButton);
+		
+		buttonPanel.add(Box.createRigidArea(new Dimension(0,5)));
+		buttonPanel.add(logoutButton);
+		
 		buttonPanel.add(Box.createVerticalGlue());
+		
+		buttonPanel.add(quitButton);
 		
 		buttonPanel.setBackground(GUIConstants.darkgray);
 		
@@ -132,7 +130,6 @@ public class MemberGUI extends JFrame implements ActionListener
 		holder.add(Box.createRigidArea(new Dimension(10,0)));
 		holder.add(browserPanel);
 		
-//		setLocationByPlatform(true);
 		setBackground(Color.white);
 		setTitle("Library Catalog");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -155,7 +152,7 @@ public class MemberGUI extends JFrame implements ActionListener
 		currentUserInfo = this.currentUser.getUsername();
 		userLabel.setFont(new Font("Arial", Font.BOLD, 14));
 		userLabel.setText(currentUserInfo);
-		
+
 		browserPanel.registerUser(currentUser);		
 	}
 	
@@ -167,34 +164,40 @@ public class MemberGUI extends JFrame implements ActionListener
 			System.out.println("The close button was pressed. Closing Account Creation Window");
 			dispose();
 		}
-		if(e.getSource().equals(searchButton))
+		if(e.getSource().equals(titleButton))
 		{
 			String searchTerm = JOptionPane.showInputDialog(this, "Enter Search Term: ");
 			System.out.println("Searching for: " + searchTerm);		
-			
-			/*To Do: Implement search function to find items associated with the input search term
-			 *Ex: client.searchFor(searchTerm);
-			 *When returning from a search, update the display to show the items found...where? In one of the ribbons?
-			 *On a new screen (ex: Create a UI window ResultsScreen?)
-			*/
-			
+	
 			SearchManager sm = new SearchManager(client);
-		//	sm.executeSearch(searchTerm);
 			
 			sm.searchByTitle(searchTerm);
 		}
-		if(e.getSource().equals(bookButton))
+		if(e.getSource().equals(languageButton))
 		{
-			//To Do: Update the window to show only books instead of 1 book, 1 music, and 1 movie
+			String searchTerm = JOptionPane.showInputDialog(this, "Enter Search Term: ");
+			System.out.println("Searching for: " + searchTerm);		
+	
+			SearchManager sm = new SearchManager(client);
+			
+			sm.searchByLanguage(searchTerm);
 		}
-		if(e.getSource().equals(musicButton))
+		if(e.getSource().equals(countryButton))
 		{
-			//To Do: Update the window to show only audio items instead of 1 book, 1 music, and 1 movie
+			String searchTerm = JOptionPane.showInputDialog(this, "Enter Search Term: ");
+			System.out.println("Searching for: " + searchTerm);		
+	
+			SearchManager sm = new SearchManager(client);
+			
+			sm.searchByCountry(searchTerm);
 		}
-		if(e.getSource().equals(movieButton))
+		
+		if(e.getSource().equals(logoutButton))
 		{
-			//To Do: Update the window to show only movies instead of 1 book, 1 music, and 1 movie
+			launchLoginWindow(client);
+			dispose();
 		}
+		
 	}
 	
 }

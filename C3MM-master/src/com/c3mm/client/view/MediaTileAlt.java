@@ -1,9 +1,8 @@
+//JW
 package com.c3mm.client.view;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -21,17 +20,15 @@ public class MediaTileAlt extends JPanel
 	
 	private int xLoc;
 	private int yLoc;
+		
+	private String imageURL;
+	private JLabel imgLabel;
+	private ImageIcon img;
 	
-	private int tileID;
 	private boolean displayInfo;
 	
-	String imageURL;
-	JLabel imgLabel;
-	ImageIcon img;
-	
-	AdditionalInfoFrame infoFrame;
+	private AdditionalInfoFrame infoFrame;
 		
-	//One way
 	private AbstractMediaModel item;
 	
 	private BookModel book;
@@ -57,9 +54,6 @@ public class MediaTileAlt extends JPanel
 		xLoc = 0;
 		yLoc = 0;
 		
-		//test
-		//this.book = book;
-		
 		item = book;
 		
 		String img = "images/" + book.getImageURL();
@@ -77,9 +71,7 @@ public class MediaTileAlt extends JPanel
 	{
 		xLoc = 0;
 		yLoc = 0;
-		
-		//test
-		//this.cd = cd;
+
 		item = cd;
 		
 		String img = "images/" + cd.getImageURL();
@@ -96,8 +88,6 @@ public class MediaTileAlt extends JPanel
 		xLoc = 25;
 		yLoc = 25;
 		
-		//test
-		//this.movie = movie;
 		item = movie;
 		
 		String img = "images/" + movie.getImageURL();
@@ -135,14 +125,6 @@ public class MediaTileAlt extends JPanel
 	
 	private void displayAdditionalInformation()
 	{
-		//AdditionalInfoFrame infoFrame = new AdditionalInfoFrame(item);
-		//infoFrame.set
-		//infoFrame.showInfoFrame();
-		//infoFrame.repaint();
-		
-		//AdditionalInfoFrame info = new AdditionalInfoFrame();
-		//info.setItem(item);
-		
 		infoFrame.showInfoFrame();
 	}
 	
@@ -151,7 +133,9 @@ public class MediaTileAlt extends JPanel
 	{
 		super.paintComponent(g);
 		
-		//image center at width/2 --> left corner at [width/2 - (imageWidth/2)]
+		/*To center image in tile:
+		 *Put upper-left corner at [width/2 - (imageWidth/2)]
+		 */
 		int width = this.getWidth();
 		int xOffset = ((width/2) - (img.getIconWidth()/2));
 		imgLabel.setLocation(xOffset, 20);
